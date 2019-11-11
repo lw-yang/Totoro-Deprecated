@@ -1,1 +1,7 @@
 language: java
+before_install:
+  - chmod +x mvnw
+branches:
+  only:
+    - master
+    - dev
