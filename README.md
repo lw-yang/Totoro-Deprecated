@@ -20,8 +20,15 @@ Totoro is a mall system that uses SpringBoot+Vue
 - 后台管理 ( Background Management )
 
 ## Quickstart
+👉  Get started with the following commands:
+
 ### 前端界面 ( front-end page)
-TODO
+```shell script
+#npm install -g cnpm --registry=https://registry.npm.taobao.org
+cd totoro-vue
+npm install
+npm run serve
+```
 ### 后端服务 ( back-end service)
 ```shell script
 git clone https://github.com/lw-yang/Totoro.git
