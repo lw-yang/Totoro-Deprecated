@@ -6,37 +6,40 @@ Totoro is a mall system that uses SpringBoot+Vue
 [![Build Status](https://travis-ci.org/lw-yang/Totoro.svg?branch=master)](https://travis-ci.org/lw-yang/Totoro)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cc0446cdd4fc4a93bf14b17e59a01c0e)](https://www.codacy.com/manual/1670906161/Totoro?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lw-yang/Totoro&amp;utm_campaign=Badge_Grade)
 ## Features
-系统包括以下模块:
-- 用户模块 ( User Module )
-- 商户模块 ( Merchant Module ) 
-- 商品模块 ( Product Module )
-- 分类模块 ( Classification Module )
-- 购物车模块 ( Shopping Cart Module )
-- 订单模块 ( Order Module )
-- 支付模块 ( Payment Module )
-- 评论模块 ( Comment Module )
-- 积分模块 ( Integration Module )
-- 资讯模块 ( Information Module )
-- 聊天模块 ( Chat Module )
-- 后台管理 ( Background Management )
+- Totoro_v1.0
+    - 用户模块 ( User Module )
+    - 分类模块 ( Classification Module )
+    - 商品模块 ( Product Module )
+    - 订单模块 ( Order Module )
+    - 购物车模块 ( Shopping Cart Module )
+- Totoro_v2.0
+    - 商户模块 ( Merchant Module ) 
+    - 评论模块 ( Comment Module )
+    - 积分模块 ( Integration Module )
+    - 支付模块 ( Payment Module )
+- Totoro_v2.5
+    - 后台管理 ( Background Management )
+- Totoro_v3.0
+    - 资讯模块 ( Information Module )
+    - 聊天模块 ( Chat Module )
 
 ## Quickstart
 👉  Get started with the following commands:
 
-### 前端界面 ( front-end page)
+### front-end page
 ```shell script
 #npm install -g cnpm --registry=https://registry.npm.taobao.org
 cd totoro-vue
 npm install
 npm run serve
 ```
-### 后端服务 ( back-end service)
+### back-end service
 ```shell script
 git clone https://github.com/lw-yang/Totoro.git
 cd Totoro
 mvn install
 mvn clean package
-java -Dfile.encoding=UTF-8 -jar Totoro/target/Totoro-0.0.1-SNAPSHOT.jar
+java -Dfile.encoding=UTF-8 -jar Totoro/boot/target/boot-0.0.1-SNAPSHOT.jar
 ```
 ## Technical
 - `Vue`  前端MVVM框架，包括使用Vue Router、VueX
