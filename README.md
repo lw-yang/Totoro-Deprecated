@@ -1,6 +1,7 @@
 # Totoro
 Totoro is a mall system that uses SpringBoot+Vue
-基于商城系统的SpringBoot+Vue前后端分离全栈开发
+
+ 基于商城系统的SpringBoot+Vue前后端分离全栈开发 
 
 [![Build Status](https://travis-ci.org/lw-yang/Totoro.svg?branch=master)](https://travis-ci.org/lw-yang/Totoro)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cc0446cdd4fc4a93bf14b17e59a01c0e)](https://www.codacy.com/manual/1670906161/Totoro?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lw-yang/Totoro&amp;utm_campaign=Badge_Grade)
@@ -37,6 +38,19 @@ mvn install
 mvn clean package
 java -Dfile.encoding=UTF-8 -jar Totoro/target/Totoro-0.0.1-SNAPSHOT.jar
 ```
+## Technical
+- `Vue`  前端MVVM框架，包括使用Vue Router、VueX
+- `Vant`  基于vue的移动端UI组件库，对比几个前端UI框架（cube-ui、Mint UI、vonic、vux）最后选择了Vant
+- `Axios` 基于Promise的HTTP库
+- `vue-element-admin` 后台管理模板
+
+
+- `SpringBoot` 核心框架
+- `Mybatis` 数据库ORM框架
+- `MySql` 关系型数据库
+- `Redis` 缓存
+- `Mongodb` 可能用来存放文件等资源
+- `Shiro` 权限管理
 ## Contact
 - Bugs: [Issues](https://github.com/lw-yang/Totoro/issues)
 - Email: 1670906161@qq.com (lwyang)
