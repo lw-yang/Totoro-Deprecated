@@ -25,17 +25,34 @@ Totoro is a mall system that uses SpringBoot+Vue
 
 ## Quickstart
 👉  Get started with the following commands:
-
+```shell script
+git clone https://github.com/lw-yang/Totoro.git
+```
+### database
+First you need to config the jdbc connection in pom.xml(root)
+```
+<properties>
+	<!--jdbc connection configuration-->
+	<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+	<jdbc.url>jdbc:mysql://localhost:3306/totoro?serverTimezone=UTC</jdbc.url>
+	<jdbc.username>root</jdbc.username>
+	<jdbc.password>123456</jdbc.password>
+</properties>
+```
+Then you can run the maven plugin to create tables
+```shell script
+cd Totoro
+mvn flyway:migrate
+```
 ### front-end page
 ```shell script
 #npm install -g cnpm --registry=https://registry.npm.taobao.org
-cd totoro-vue
+cd Totoro/totoro-vue
 npm install
 npm run serve
 ```
 ### back-end service
 ```shell script
-git clone https://github.com/lw-yang/Totoro.git
 cd Totoro
 mvn install
 mvn clean package

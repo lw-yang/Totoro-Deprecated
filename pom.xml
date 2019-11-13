@@ -18,6 +18,12 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<maven.test.skip>true</maven.test.skip>
+
+		<!--jdbc connection configuration-->
+		<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+		<jdbc.url>jdbc:mysql://localhost:3306/totoro?serverTimezone=UTC</jdbc.url>
+		<jdbc.username>root</jdbc.username>
+		<jdbc.password>123456</jdbc.password>
 	</properties>
 
 	<modules>
@@ -46,6 +52,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.1.20</version>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
@@ -63,6 +75,42 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+<!--			数据库版本管理插件 用法: cd Totoro; mvn flyway:migrate-->
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>6.0.8</version>
+				<configuration>
+					<url>${jdbc.url}</url>
+					<user>${jdbc.username}</user>
+					<password>${jdbc.password}</password>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>8.0.18</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+<!--			mybatis-generator插件 用法: cd 模块目录; mvn mybatis-generator:generate-->
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.7</version>
+				<configuration>
+					<configurationFile>${basedir}/src/main/resources/mbg/generatorConfig.xml</configurationFile>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>8.0.18</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
