@@ -56,7 +56,7 @@ npm run serve
 cd Totoro
 mvn install
 mvn clean package
-java -Dfile.encoding=UTF-8 -jar Totoro/boot/target/boot-0.0.1-SNAPSHOT.jar
+java -Dfile.encoding=UTF-8 -jar boot/target/boot-0.0.1-SNAPSHOT-exec.jar
 ```
 ## Technical
 - `Vue`  前端MVVM框架，包括使用Vue Router、VueX
