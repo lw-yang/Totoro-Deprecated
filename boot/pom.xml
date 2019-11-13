@@ -8,7 +8,6 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>boot</artifactId>
-    <version>${project.version}</version>
     <name>boot</name>
     <description>boot module</description>
     <packaging>jar</packaging>
@@ -21,6 +20,10 @@
         <dependency>
             <groupId>com.lwyang</groupId>
             <artifactId>customer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lwyang</groupId>
+            <artifactId>common</artifactId>
         </dependency>
     </dependencies>
 

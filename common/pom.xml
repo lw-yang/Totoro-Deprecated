@@ -8,7 +8,6 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>common</artifactId>
-    <version>${project.version}</version>
     <name>common</name>
     <description>common module</description>
 

@@ -8,7 +8,6 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>customer</artifactId>
-    <version>${project.version}</version>
     <name>customer</name>
     <description>customer module</description>
     <packaging>jar</packaging>
