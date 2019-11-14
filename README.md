@@ -6,20 +6,20 @@ Totoro is a mall system that uses SpringBoot+Vue
 [![Build Status](https://travis-ci.org/lw-yang/Totoro.svg?branch=master)](https://travis-ci.org/lw-yang/Totoro)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cc0446cdd4fc4a93bf14b17e59a01c0e)](https://www.codacy.com/manual/1670906161/Totoro?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lw-yang/Totoro&amp;utm_campaign=Badge_Grade)
 ## Features
-- Totoro_v1.0
+- `Totoro_v1.0`
     - 用户模块 ( User Module )
     - 分类模块 ( Classification Module )
     - 商品模块 ( Product Module )
     - 订单模块 ( Order Module )
     - 购物车模块 ( Shopping Cart Module )
-- Totoro_v2.0
+- `Totoro_v2.0`
     - 商户模块 ( Merchant Module ) 
     - 评论模块 ( Comment Module )
     - 积分模块 ( Integration Module )
     - 支付模块 ( Payment Module )
-- Totoro_v2.5
+- `Totoro_v2.5`
     - 后台管理 ( Background Management )
-- Totoro_v3.0
+- `Totoro_v3.0`
     - 资讯模块 ( Information Module )
     - 聊天模块 ( Chat Module )
 
@@ -71,6 +71,7 @@ java -Dfile.encoding=UTF-8 -jar boot/target/boot-0.0.1-SNAPSHOT-exec.jar
 - `Redis` 缓存
 - `Mongodb` 可能用来存放文件等资源
 - `Shiro` 权限管理
+- `flyway` 数据库版本管理
 ## Contact
 - Bugs: [Issues](https://github.com/lw-yang/Totoro/issues)
 - Email: 1670906161@qq.com (lwyang)
