@@ -49,4 +49,11 @@ public class CustomerVo {
         }
         return true;
     }
+
+    public boolean validateLogin(){
+        if (StringUtils.isAnyEmpty(username, password)){
+            return false;
+        }
+        return true;
+    }
 }

@@ -11,6 +11,7 @@ public enum  CustomerErrorEnum {
     CUSTOMER_UPDATE_ERROR(1002,"顾客更新异常"),
     CUSTOMER_DELETE_ERROR(1003,"顾客删除异常"),
     CUSTOMER_NOT_EXIST(1004,"该顾客不存在"),
+    CUSTOMER_PASSWORD_ERROR(1005,"密码错误"),
 
     ;
 

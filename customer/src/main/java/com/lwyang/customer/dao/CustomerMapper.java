@@ -1,6 +1,7 @@
 package com.lwyang.customer.dao;
 
 import com.lwyang.customer.entity.Customer;
+import org.apache.commons.lang3.StringUtils;
 
 public interface CustomerMapper {
     int deleteByPrimaryKey(Long id);
@@ -14,4 +15,6 @@ public interface CustomerMapper {
     int updateByPrimaryKeySelective(Customer record);
 
     int updateByPrimaryKey(Customer record);
+
+    Customer selectByUsername(String username);
 }
