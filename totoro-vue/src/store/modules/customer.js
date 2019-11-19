@@ -9,7 +9,7 @@ const mutations = {
     },
     set_username: (state, username) =>{
       state.username = username
-    }
+    },
 }
 
 export default {

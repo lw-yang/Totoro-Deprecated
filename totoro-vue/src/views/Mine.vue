@@ -1,8 +1,6 @@
 <template>
     <div>
-        <van-row id="setting" type="flex" justify="end">
-            <van-col span="5">设置</van-col>
-        </van-row>
+        <div style="margin-top: 5rem">
 
         <div id="image">
             <van-image
@@ -13,21 +11,21 @@
             />
         </div>
         <div v-if="isLogin">
-            <div id="info">
+            <div id="info" style="float: left">
                 <div id="username">{{username}}</div>
                 <div id="points">积分值: {{points}}</div>
             </div>
         </div>
-        <div v-else>
-            <div id="">
-                <p id="loginOrRegister">
-                    <router-link to="/login">
+        <div v-else >
+            <div style="height: 5rem; float:left; line-height: 3rem">
+                <p >
+                    <router-link to="/login" id="loginOrRegister">
                         登录 / 注册
                     </router-link>
                 </p>
             </div>
         </div>
-
+        </div>
     </div>
 </template>
 
@@ -45,9 +43,13 @@
         name: "Mine",
         data() {
             return {
-                isLogin:'',
-                username: 'lwyang',
-                points:'100'
+                username: this.$store.getters.username,
+                points:'0'
+            }
+        },
+        computed: {
+            isLogin() {
+                return this.$store.getters.token !== '';
             }
         },
         methods:{
@@ -59,12 +61,9 @@
 </script>
 
 <style scoped>
-#setting{
-    font-size: 1.2rem;
-}
 #image{
     float: left;
-    margin-left: 2rem;
+    margin-left: 3rem;
     margin-right: 3rem;
 }
 #username{

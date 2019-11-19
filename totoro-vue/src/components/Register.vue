@@ -6,11 +6,11 @@
                 left-arrow
                 @click-left="onClickLeft"
         >
-            <p slot="left" style="font-size: 1rem"><van-icon name="arrow-left" /> 返回</p>
+            <div slot="left" style="font-size: 1.1rem"><van-icon name="arrow-left" /> 返回</div>
         </van-nav-bar>
-        <van-row>
-            <van-col span="10" offset="9" style="font-size: 1.3rem; margin-bottom: 1rem; font-weight: bold">用 户 注 册</van-col>
-        </van-row>
+        <div style="text-align: center; clear: both">
+            <p style="font-size: 1.3rem; margin-bottom: 1rem; font-weight: bold">用 户 注 册</p>
+        </div>
         <van-cell-group style="line-height: 60px;">
             <van-field
                     v-model="username"
@@ -44,15 +44,26 @@
                     label-width="120px"
                     style="line-height: 3rem;font-size: 1.2rem;margin-left: 2rem"
             />
-            <label style="float: left; margin-left: 2.5rem;font-size: 1.2rem;line-height: 3rem; margin-right: 1.5rem; padding-top: .5rem"> 年龄: </label>
+            <van-field
+                    v-model="email"
+                    type="email "
+                    label="邮 箱:"
+                    placeholder="请输入邮箱"
+                    label-width="120px"
+                    style="line-height: 3rem;font-size: 1.2rem;margin-left: 2rem"
+            />
+            <label style="float: left; width:100px;margin-left: 2.5rem;font-size: 1.2rem;line-height: 3rem; padding-top: .5rem"> 年龄: </label>
             <van-stepper id="age" v-model="age" integer  step="1"  input-width="5rem" button-size="2rem" min="1" max="100"/>
 
-            <label style="float: left; margin-left: 2.5rem;font-size: 1.2rem;line-height: 3rem; margin-right: 1.5rem"> 性别: </label>
+            <label style="float: left; width:100px;margin-left: 2.5rem;font-size: 1.2rem;line-height: 3rem;"> 性别: </label>
             <van-radio-group v-model="sex" icon-size="1.2rem" style="padding-top: 1rem">
                 <van-radio name="1" style="float: left;margin-right: 2rem">男</van-radio>
                 <van-radio name="2">女</van-radio>
             </van-radio-group>
-            <van-button @click="register" size="large" type="primary" style="margin-top: 3rem;margin-left: 2.3rem;height: 2.5rem;width: 18rem;font-size: 1rem">注册</van-button>
+
+            <div style="text-align: center;clear: both ">
+                <van-button  @click="register" size="large" type="primary" style="margin-top: 3rem;height: 2.5rem;width: 18rem;font-size: 1rem">注 册</van-button>
+            </div>
         </van-cell-group>
     </div>
 </template>
@@ -90,6 +101,7 @@
                 answer: '',
                 age: '1',
                 sex: '1',
+                email: '',
                 customerName: ''
             }
         },
@@ -98,11 +110,10 @@
                 this.$router.push('/login')
             },
             register:function () {
-                alert(process.env.VUE_APP_BASE_API)
-                register(this.username).then(res =>{
+                register(this.registerData).then(res =>{
                     this.customerName = res.data.data.username
                     this.$store.commit('set_username',this.customerName)
-                    Toast.success("注册成功")
+                    Toast.success("注册成功"+this.$store.getters.username)
                     this.$router.push('/login')
                 })
             }
@@ -115,7 +126,8 @@
                     question: this.question,
                     answer: this.answer,
                     age: this.age,
-                    sex: this.sex
+                    sex: this.sex,
+                    email: this.email
                 }
             }
         }
