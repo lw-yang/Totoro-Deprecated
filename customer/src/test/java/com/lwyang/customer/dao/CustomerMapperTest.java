@@ -5,11 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class CustomerMapperTest {
@@ -29,7 +26,7 @@ class CustomerMapperTest {
                 .email("1234567")
                 .status((byte) 1)
                 .createTime(LocalDateTime.now())
-                .modifyTime(LocalDateTime.now())
+                .updateTime(LocalDateTime.now())
                 .build();
         int result = customerMapper.insert(customer);
         Assertions.assertEquals(1,result);
