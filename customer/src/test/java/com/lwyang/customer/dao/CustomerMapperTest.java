@@ -38,6 +38,8 @@ class CustomerMapperTest {
 
     @Test
     void selectByPrimaryKey() {
+        Customer savedCustomer = customerMapper.selectByPrimaryKey(646306834856017920L);
+        System.out.println(savedCustomer);
     }
 
     @Test
