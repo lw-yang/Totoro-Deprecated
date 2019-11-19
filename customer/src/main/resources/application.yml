@@ -18,3 +18,4 @@ mybatis:
 logging:
   level:
     com.lwyang.customer.dao : debug
+
