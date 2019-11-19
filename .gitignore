@@ -29,3 +29,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### VUE ###
+node_modules
