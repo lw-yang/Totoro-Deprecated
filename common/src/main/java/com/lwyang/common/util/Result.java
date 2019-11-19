@@ -33,10 +33,10 @@ public class Result<T> {
         return result;
     }
 
-    public static Result fail(ResultEnum resultEnum){
+    public static Result fail(Integer code, String message){
         return Result.builder()
-                .code(resultEnum.getCode())
-                .message(resultEnum.getMessage())
+                .code(code)
+                .message(message)
                 .build();
     }
 }
