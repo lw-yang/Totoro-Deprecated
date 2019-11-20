@@ -6,12 +6,13 @@
                 left-arrow
                 @click-left="onClickLeft"
         >
-            <div slot="left" style="font-size: 1.1rem"><van-icon name="arrow-left" /> 返回</div>
+            <div slot="left" style="font-size: 1.1rem;margin-left: 1rem"><van-icon size="1.5rem" name="arrow-left" /> </div>
+            <div slot="title" style="font-size: 1.3rem; font-weight: bold">用 户 注 册</div>
         </van-nav-bar>
-        <div style="text-align: center; clear: both">
-            <p style="font-size: 1.3rem; margin-bottom: 1rem; font-weight: bold">用 户 注 册</p>
-        </div>
-        <van-cell-group style="line-height: 60px;">
+<!--        <div style="text-align: center; clear: both">-->
+<!--            <p style="font-size: 1.3rem; margin-bottom: 1rem; font-weight: bold">用 户 注 册</p>-->
+<!--        </div>-->
+        <van-cell-group style="line-height: 60px;margin-top: 2rem;margin-left: 1rem">
             <van-field
                     v-model="username"
                     clearable
@@ -61,10 +62,10 @@
                 <van-radio name="2">女</van-radio>
             </van-radio-group>
 
-            <div style="text-align: center;clear: both ">
-                <van-button  @click="register" size="large" type="primary" style="margin-top: 3rem;height: 2.5rem;width: 18rem;font-size: 1rem">注 册</van-button>
-            </div>
         </van-cell-group>
+        <div style="text-align: center;clear: both ">
+            <van-button  @click="register" size="large" type="primary" style="margin-top: 3rem;height: 2.5rem;width: 18rem;font-size: 1rem">注 册</van-button>
+        </div>
     </div>
 </template>
 
@@ -113,9 +114,14 @@
                 register(this.registerData).then(res =>{
                     this.customerName = res.data.data.username
                     this.$store.commit('set_username',this.customerName)
-                    Toast.success("注册成功"+this.$store.getters.username)
+                    Toast({
+                        type: 'html',
+                        message: '<P style="font-size: .6rem;margin: .3rem">注册成功</P>',
+                        position: 'bottom',
+                        closeOnClick: "true",
+                    });
                     this.$router.push('/login')
-                })
+                }).catch(() => {})
             }
         },
         computed: {
