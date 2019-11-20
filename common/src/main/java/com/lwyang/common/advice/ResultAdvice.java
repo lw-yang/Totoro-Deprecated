@@ -1,6 +1,6 @@
 package com.lwyang.common.advice;
 
-import com.lwyang.common.annotation.IgnoreResultAdvice;
+import com.lwyang.common.annotation.ResultBodyAdvice;
 import com.lwyang.common.util.Result;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -9,7 +9,6 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-import java.util.HashMap;
 import java.util.Optional;
 
 /**
@@ -21,15 +20,33 @@ import java.util.Optional;
 public class ResultAdvice implements ResponseBodyAdvice {
 
 
+    /**
+     * <p>判断是否有需要进行封装的注解，有{@link ResultBodyAdvice}才会进行封装</p>
+     *
+     * @param methodParameter  methodParameter
+     * @param aClass aClass
+     * @return 有 {@link ResultBodyAdvice} 注解返回true，否则返回false
+     */
     @Override
     public boolean supports(MethodParameter methodParameter, Class aClass) {
-        if (methodParameter.hasMethodAnnotation(IgnoreResultAdvice.class) ||
-                methodParameter.getDeclaringClass().isAnnotationPresent(IgnoreResultAdvice.class)) {
-            return false;
+        if (methodParameter.hasMethodAnnotation(ResultBodyAdvice.class) ||
+                methodParameter.getDeclaringClass().isAnnotationPresent(ResultBodyAdvice.class)) {
+            return true;
         }
-        return true;
+        return false;
     }
 
+    /**
+     * <P>封装返回值为{@link Result}结构</p>
+     *
+     * @param o 用户返回值
+     * @param methodParameter methodParameter
+     * @param mediaType 媒体类型
+     * @param aClass aClass
+     * @param serverHttpRequest serverHttpRequest
+     * @param serverHttpResponse serverHttpResponse
+     * @return Result 封装为通用返回结构
+     */
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
 
@@ -41,11 +58,8 @@ public class ResultAdvice implements ResponseBodyAdvice {
 
             //返回异常已经被ExceptionAdvice封装过了，这里就直接返回
             return o;
-        }else if (o instanceof HashMap && ((HashMap) o).containsKey("error")){
-
-            //请求出错（404...）直接返回
-            return o;
         }
+
         return Result.success(o);
     }
 }

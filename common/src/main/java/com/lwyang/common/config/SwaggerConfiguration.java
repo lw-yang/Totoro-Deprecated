@@ -9,12 +9,14 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * Swagger配置
  * @author lwyang
  */
 @Configuration
+@EnableSwagger2
 public class SwaggerConfiguration {
 
     /**
@@ -33,10 +35,8 @@ public class SwaggerConfiguration {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Totoro RESTful API 文档")
-                .termsOfServiceUrl("https://github.com/lw-yang/Totoro")
                 .contact(new Contact("lwyang","https://github.com/lw-yang/Totoro", "1670906161@qq.com"))
-                .version("1.0")
-                .description("Totoro后端接口文档")
+                .version("0.1")
                 .build();
     }
 }
