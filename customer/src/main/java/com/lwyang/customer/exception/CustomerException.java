@@ -4,7 +4,7 @@ import com.lwyang.common.exception.TotoroException;
 import com.lwyang.customer.enums.CustomerErrorEnum;
 
 /**
- * customer模块通用异常类
+ * customer模块通用异常类{@link TotoroException}
  * @author lwyang
  */
 public class CustomerException extends TotoroException {

@@ -4,11 +4,12 @@ import com.lwyang.common.cache.ICache;
 import com.lwyang.common.util.IdUtil;
 import com.lwyang.customer.dao.CustomerMapper;
 import com.lwyang.customer.entity.Customer;
-import com.lwyang.customer.enums.ConstEnum;
+import com.lwyang.customer.enums.CustomerConstEnum;
 import com.lwyang.customer.enums.CustomerErrorEnum;
 import com.lwyang.customer.exception.CustomerException;
 import com.lwyang.customer.service.CustomerService;
 import com.lwyang.customer.vo.CustomerVo;
+import com.lwyang.customer.vo.RegisterVo;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -21,6 +22,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * 顾客模块业务处理
+ * @author lwyang
+ */
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -31,28 +36,28 @@ public class CustomerServiceImpl implements CustomerService {
     private ICache cache;
 
     @Override
-    public CustomerVo addCustomer(CustomerVo customerVo){
-        int count = customerMapper.countByUsername(customerVo.getUsername());
+    public CustomerVo addCustomer(RegisterVo registerVo){
+        int count = customerMapper.countByUsername(registerVo.getUsername());
         if (count != 0){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_USERNAME_EXIST);
         }
-        count = customerMapper.countByEmail(customerVo.getEmail());
+        count = customerMapper.countByEmail(registerVo.getEmail());
         if (count != 0){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_EMAIL_EXIST);
         }
 
         Customer customer = new Customer();
-        BeanUtils.copyProperties(customerVo, customer);
+        BeanUtils.copyProperties(registerVo, customer);
 
         Long id = IdUtil.nextId();
         customer.setId(id);
-        customer.setPassword(DigestUtils.md5Hex(customerVo.getPassword()));
+        customer.setPassword(DigestUtils.md5Hex(registerVo.getPassword()));
         customer.setCreateTime(LocalDateTime.now());
         customer.setUpdateTime(LocalDateTime.now());
         if (0 == customerMapper.insertSelective(customer)){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_INSERT_ERROR);
         }
-        return CustomerVo.builder().username(customerVo.getUsername()).build();
+        return CustomerVo.builder().username(registerVo.getUsername()).build();
     }
 
     @Override
@@ -68,9 +73,9 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         String token = UUID.randomUUID().toString().replaceAll("-", "");
-        cache.set(ConstEnum.TOKEN.getStr(), token);
+        cache.set(CustomerConstEnum.TOKEN.getStr(), token);
         Map<String, String> returnData = new HashMap<>(1,1);
-        returnData.put(ConstEnum.TOKEN.getStr(), token);
+        returnData.put(CustomerConstEnum.TOKEN.getStr(), token);
         return returnData;
     }
 
