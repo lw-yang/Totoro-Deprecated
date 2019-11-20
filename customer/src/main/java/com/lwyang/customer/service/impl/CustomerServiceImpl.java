@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -31,8 +32,18 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerVo addCustomer(CustomerVo customerVo){
+        int count = customerMapper.countByUsername(customerVo.getUsername());
+        if (count != 0){
+            throw new CustomerException(CustomerErrorEnum.CUSTOMER_USERNAME_EXIST);
+        }
+        count = customerMapper.countByEmail(customerVo.getEmail());
+        if (count != 0){
+            throw new CustomerException(CustomerErrorEnum.CUSTOMER_EMAIL_EXIST);
+        }
+
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerVo, customer);
+
         Long id = IdUtil.nextId();
         customer.setId(id);
         customer.setPassword(DigestUtils.md5Hex(customerVo.getPassword()));
@@ -50,14 +61,42 @@ public class CustomerServiceImpl implements CustomerService {
         if (null == customer){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_NOT_EXIST);
         }
+
         String cryptPassword = DigestUtils.md5Hex(customerVo.getPassword());
         if (!StringUtils.equals(cryptPassword, customer.getPassword())){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_PASSWORD_ERROR);
         }
+
         String token = UUID.randomUUID().toString().replaceAll("-", "");
         cache.set(ConstEnum.TOKEN.getStr(), token);
         Map<String, String> returnData = new HashMap<>(1,1);
         returnData.put(ConstEnum.TOKEN.getStr(), token);
         return returnData;
+    }
+
+    @Override
+    public CustomerVo getCustomer(String username){
+        Customer customer = customerMapper.selectByUsername(username);
+        if (customer == null){
+            throw new CustomerException(CustomerErrorEnum.CUSTOMER_NOT_EXIST);
+        }
+
+        CustomerVo customerVo = new CustomerVo();
+        BeanUtils.copyProperties(customer, customerVo);
+        return customerVo;
+    }
+
+    @Override
+    public Optional editCustomer(CustomerVo customerVo){
+        int count = customerMapper.countByEmail(customerVo.getEmail());
+        if (count != 0){
+            throw new CustomerException(CustomerErrorEnum.CUSTOMER_EMAIL_EXIST);
+        }
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(customerVo, customer);
+        if (0 == customerMapper.updateByUsernameSelective(customer)){
+            throw new CustomerException(CustomerErrorEnum.CUSTOMER_UPDATE_ERROR);
+        }
+        return Optional.empty();
     }
 }

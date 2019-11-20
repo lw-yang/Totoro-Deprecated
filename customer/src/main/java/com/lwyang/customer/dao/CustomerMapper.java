@@ -17,4 +17,10 @@ public interface CustomerMapper {
     int updateByPrimaryKey(Customer record);
 
     Customer selectByUsername(String username);
+
+    Integer countByUsername(String username);
+
+    Integer countByEmail(String email);
+
+    int updateByUsernameSelective(Customer record);
 }
