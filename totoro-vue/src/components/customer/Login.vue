@@ -5,11 +5,9 @@
                 left-arrow
                 @click-left="onClickLeft"
         >
-            <div slot="left" style="font-size: 1.1rem;"><van-icon name="arrow-left" /> 返回</div>
+            <div slot="left" style="font-size: 1.1rem;margin-left: 1rem"><van-icon size="1.5rem" name="arrow-left" /> </div>
+            <div slot="title" style="font-size: 1.3rem; font-weight: bold">用 户 登 录</div>
         </van-nav-bar>
-        <div style="text-align: center; clear: both">
-            <p style="font-size: 1.3rem; margin-bottom: 1rem; font-weight: bold">用 户 登 录</p>
-        </div>
         <van-cell-group style="line-height: 60px;margin-top: 2rem">
             <van-field
                     v-model="username"
@@ -48,7 +46,7 @@
     import { Button } from 'vant';
     import { Row, Col } from 'vant';
     import { NavBar } from 'vant';
-    import {login} from "../api/customer";
+    import {login} from "../../api/customer";
 
     Vue.use(Row).use(Col);
     Vue.use(Button);
@@ -70,9 +68,11 @@
             login:function () {
                 login(this.loginData).then(res => {
                     let token = res.data.data.token
-                    this.$store.commit("set_token", token)
+                    this.$store.commit('set_username',this.username)
+                    window.localStorage.setItem("token", token)
+                    window.localStorage.setItem("username", this.username)
                     this.$router.push('/mine')
-                })
+                }).catch(()=>{})
             }
         },
         computed:{

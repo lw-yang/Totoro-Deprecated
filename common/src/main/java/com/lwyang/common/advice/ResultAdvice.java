@@ -9,6 +9,7 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
+import java.util.HashMap;
 import java.util.Optional;
 
 /**
@@ -39,6 +40,10 @@ public class ResultAdvice implements ResponseBodyAdvice {
         }else if (o instanceof Result){
 
             //返回异常已经被ExceptionAdvice封装过了，这里就直接返回
+            return o;
+        }else if (o instanceof HashMap && ((HashMap) o).containsKey("error")){
+
+            //请求出错（404...）直接返回
             return o;
         }
         return Result.success(o);

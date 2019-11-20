@@ -20,14 +20,18 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/components/Login')
+    component: () => import('@/components/customer/Login')
   },
   {
     path: '/register',
     name: 'register',
-    component: () => import('@/components/Register')
+    component: () => import('@/components/customer/Register')
+  },
+  {
+    path: '/customerSetting',
+    name: 'customerSetting',
+    component: () => import('@/components/customer/CustomerSetting')
   }
-    // component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
 ]
 
 const router = new VueRouter({

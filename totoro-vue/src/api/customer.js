@@ -10,8 +10,23 @@ export function login(data) {
 
 export function register(data) {
     return request({
-        url: '/customer/register',
+        url: '/customer/',
         method: 'post',
+        data
+    })
+}
+
+export function getCustomer(data) {
+    return request({
+        url: '/customer/' + data,
+        method: 'get'
+    })
+}
+
+export function editCustomer(data) {
+    return request({
+        url: '/customer/',
+        method: 'put',
         data
     })
 }

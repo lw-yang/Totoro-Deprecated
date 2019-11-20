@@ -25,7 +25,12 @@ service.interceptors.response.use(
     response => {
         const res = response.data
         if (res.code !== 0){
-            Toast.fail(res.message)
+            Toast({
+                type: 'html',
+                message: '<P style="font-size: .6rem;margin: .4rem">'+res.message+'</P>',
+                position: 'bottom',
+                closeOnClick: "true",
+            });
             return Promise.reject(response)
         }
         return response
