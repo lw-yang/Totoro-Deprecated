@@ -3,6 +3,10 @@ package com.lwyang.customer.dao;
 import com.lwyang.customer.entity.Customer;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * 数据库操作接口
+ * @author lwyang
+ */
 public interface CustomerMapper {
     int deleteByPrimaryKey(Long id);
 

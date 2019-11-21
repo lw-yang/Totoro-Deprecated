@@ -1,7 +1,7 @@
 package com.lwyang.common.exception;
 
 /**
- * 通用异常
+ * 全局通用异常
  * @author lwyang
  */
 public class TotoroException extends RuntimeException {

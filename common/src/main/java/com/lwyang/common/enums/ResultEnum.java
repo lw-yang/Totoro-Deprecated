@@ -1,13 +1,14 @@
 package com.lwyang.common.enums;
 
 /**
- * 定义返回元信息
+ * 定义枚举类返回信息
  *
  * @author lwyang
  */
 public enum ResultEnum {
 
     SUCCESS(0, "成功"),
+    VALIDATE_FAIL(-1, ""),
 
     ;
 
@@ -26,4 +27,5 @@ public enum ResultEnum {
     public String getMessage() {
         return message;
     }
+
 }

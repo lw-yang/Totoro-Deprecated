@@ -27,7 +27,7 @@ public class DruidStatController {
         return DruidStatManagerFacade.getInstance().getActiveConnStackTraceList();
     }
 
-    @GetMapping("/basic")
+    @GetMapping("basic")
     public Map<String, Object> returnJSONBasicStat(){
         return DruidStatManagerFacade.getInstance().returnJSONBasicStat();
     }

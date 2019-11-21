@@ -1,14 +1,19 @@
 package com.lwyang.customer.enums;
 
-public enum ConstEnum {
+/**
+ * 通用常量
+ * @author lwyang
+ */
+public enum CustomerConstEnum {
 
     TOKEN("token"),
+    USERNAME("username"),
 
     ;
 
     private String str;
 
-    ConstEnum(String str) {
+    CustomerConstEnum(String str) {
         this.str = str;
     }
 
