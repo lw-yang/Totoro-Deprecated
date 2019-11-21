@@ -7,7 +7,7 @@ Totoro is a mall system that uses SpringBoot+Vue
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cc0446cdd4fc4a93bf14b17e59a01c0e)](https://www.codacy.com/manual/1670906161/Totoro?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lw-yang/Totoro&amp;utm_campaign=Badge_Grade)
 ## Features
 - `Totoro_v1.0`
-    - 用户模块 ( User Module )
+    - 用户模块 ( Customer Module )
     - 分类模块 ( Classification Module )
     - 商品模块 ( Product Module )
     - 订单模块 ( Order Module )
@@ -72,6 +72,7 @@ java -Dfile.encoding=UTF-8 -jar boot/target/boot-0.0.1-SNAPSHOT-exec.jar
 - `Mongodb` 可能用来存放文件等资源
 - `Shiro` 权限管理
 - `flyway` 数据库版本管理
+- `Swagger2` Api接口文档
 ## Contact
 - Bugs: [Issues](https://github.com/lw-yang/Totoro/issues)
 - Email: 1670906161@qq.com (lwyang)
