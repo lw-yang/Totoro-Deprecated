@@ -8,7 +8,9 @@ import com.lwyang.customer.enums.CustomerConstEnum;
 import com.lwyang.customer.enums.CustomerErrorEnum;
 import com.lwyang.customer.exception.CustomerException;
 import com.lwyang.customer.service.CustomerService;
+import com.lwyang.customer.vo.CustomerEditVo;
 import com.lwyang.customer.vo.CustomerVo;
+import com.lwyang.customer.vo.LoginVo;
 import com.lwyang.customer.vo.RegisterVo;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -36,7 +38,7 @@ public class CustomerServiceImpl implements CustomerService {
     private ICache cache;
 
     @Override
-    public CustomerVo addCustomer(RegisterVo registerVo){
+    public Map<String, String> addCustomer(RegisterVo registerVo){
         int count = customerMapper.countByUsername(registerVo.getUsername());
         if (count != 0){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_USERNAME_EXIST);
@@ -57,17 +59,19 @@ public class CustomerServiceImpl implements CustomerService {
         if (0 == customerMapper.insertSelective(customer)){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_INSERT_ERROR);
         }
-        return CustomerVo.builder().username(registerVo.getUsername()).build();
+        Map<String, String> returnData = new HashMap<>(1,1);
+        returnData.put(CustomerConstEnum.USERNAME.getStr(),registerVo.getUsername());
+        return returnData;
     }
 
     @Override
-    public Map<String,String> login(CustomerVo customerVo){
-        Customer customer = customerMapper.selectByUsername(customerVo.getUsername());
+    public Map<String,String> login(LoginVo loginVo){
+        Customer customer = customerMapper.selectByUsername(loginVo.getUsername());
         if (null == customer){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_NOT_EXIST);
         }
 
-        String cryptPassword = DigestUtils.md5Hex(customerVo.getPassword());
+        String cryptPassword = DigestUtils.md5Hex(loginVo.getPassword());
         if (!StringUtils.equals(cryptPassword, customer.getPassword())){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_PASSWORD_ERROR);
         }
@@ -92,13 +96,14 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Optional editCustomer(CustomerVo customerVo){
-        int count = customerMapper.countByEmail(customerVo.getEmail());
+    public Optional editCustomer(CustomerEditVo customerEditVo){
+        int count = customerMapper.countByEmail(customerEditVo.getEmail());
         if (count != 0){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_EMAIL_EXIST);
         }
         Customer customer = new Customer();
-        BeanUtils.copyProperties(customerVo, customer);
+        BeanUtils.copyProperties(customerEditVo, customer);
+        customer.setUpdateTime(LocalDateTime.now());
         if (0 == customerMapper.updateByUsernameSelective(customer)){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_UPDATE_ERROR);
         }

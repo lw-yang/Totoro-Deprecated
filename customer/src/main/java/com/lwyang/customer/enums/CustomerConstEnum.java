@@ -7,6 +7,7 @@ package com.lwyang.customer.enums;
 public enum CustomerConstEnum {
 
     TOKEN("token"),
+    USERNAME("username"),
 
     ;
 

@@ -6,7 +6,9 @@ import com.lwyang.customer.enums.CustomerErrorEnum;
 import com.lwyang.customer.exception.CustomerException;
 import com.lwyang.customer.service.CustomerService;
 import com.lwyang.customer.service.impl.CustomerServiceImpl;
+import com.lwyang.customer.vo.CustomerEditVo;
 import com.lwyang.customer.vo.CustomerVo;
+import com.lwyang.customer.vo.LoginVo;
 import com.lwyang.customer.vo.RegisterVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,16 +37,14 @@ public class CustomerController {
     CustomerService customerService;
 
     @PostMapping("/")
-    public CustomerVo register(@RequestBody @Validated RegisterVo registerVo) {
+    @ApiOperation(value = "用户注册", response = Result.class)
+    public Map<String, String> register(@RequestBody @Validated RegisterVo registerVo) {
         return customerService.addCustomer(registerVo);
     }
 
     @PostMapping(value = "login")
-    public Map<String, String> login(@RequestBody CustomerVo customerVo) {
-        if (!customerVo.validateLogin()){
-            throw new CustomerException(CustomerErrorEnum.CUSTOMER_INVALID_PARAMS);
-        }
-        return customerService.login(customerVo);
+    public Map<String, String> login(@RequestBody LoginVo loginVo) {
+        return customerService.login(loginVo);
     }
 
     @GetMapping("/{username}")
@@ -56,11 +56,8 @@ public class CustomerController {
     }
 
     @PutMapping("/")
-    public Optional updateCustomer(@RequestBody CustomerVo customerVo){
-        if (!customerVo.validateUpdate()){
-            throw new CustomerException(CustomerErrorEnum.CUSTOMER_NO_UPDATE);
-        }
-        return customerService.editCustomer(customerVo);
+    public Optional updateCustomer(@RequestBody CustomerEditVo customerEditVo){
+        return customerService.editCustomer(customerEditVo);
     }
 
 }

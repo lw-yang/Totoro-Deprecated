@@ -15,7 +15,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Constraint(validatedBy = ByteValidator.class)
-public @interface Byte {
+public @interface ByteSupport {
 
     String message() default "{com.lwyang.customer.annotation.Byte.message}";
 

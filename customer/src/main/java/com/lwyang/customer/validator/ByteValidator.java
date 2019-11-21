@@ -1,6 +1,6 @@
 package com.lwyang.customer.validator;
 
-import com.lwyang.customer.annotation.Byte;
+import com.lwyang.customer.annotation.ByteSupport;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -13,12 +13,12 @@ import java.util.stream.Collectors;
  * 自定义Byte类型的验证器
  * @author lwyang
  */
-public class ByteValidator implements ConstraintValidator<Byte, java.lang.Byte> {
+public class ByteValidator implements ConstraintValidator<ByteSupport, java.lang.Byte> {
 
     private List<java.lang.Byte> candidateByte;
 
     @Override
-    public void initialize(Byte constraintAnnotation) {
+    public void initialize(ByteSupport constraintAnnotation) {
         String[] candidateString = constraintAnnotation.support();
         candidateByte = Arrays.stream(candidateString)
                 .map(java.lang.Byte::valueOf)
