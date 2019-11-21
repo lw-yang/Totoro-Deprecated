@@ -8,9 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.*;
 
 /**
  * 用户信息修改Json传输格式
@@ -24,8 +22,11 @@ import javax.validation.constraints.Min;
 @ApiModel
 public class CustomerEditVo {
 
+    @ApiModelProperty(value = "用户名", example = "lwyang", dataType = "String")
+    @NotEmpty(message = "用户名不能为空")
+    private String username;
+
     @ApiModelProperty(value = "邮箱", example = "1670906161@qq.com", dataType = "String")
-    @Email(message = "邮箱不能为空")
     private String email;
 
     @ApiModelProperty(value = "年龄", example = "23", dataType = "Integer")
@@ -33,7 +34,7 @@ public class CustomerEditVo {
     @Max(value = 100, message = "年龄应小于100")
     private Integer age;
 
-    @ApiModelProperty(value = "性别", example = "1:男 / 2:女", dataType = "Integer")
+    @ApiModelProperty(value = "性别 1:男 / 2:女", example = "1", dataType = "Integer")
     @ByteSupport(support = {"1","2"}, message = "性别输入错误")
     private Byte sex;
 }

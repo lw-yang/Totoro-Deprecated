@@ -27,6 +27,9 @@ public class ByteValidator implements ConstraintValidator<ByteSupport, java.lang
 
     @Override
     public boolean isValid(java.lang.Byte value, ConstraintValidatorContext context) {
+        if (value == null){
+            return true;
+        }
         long result = candidateByte.stream().filter(x->x.equals(value)).count();
         return result != 0;
     }
