@@ -8,7 +8,9 @@ import java.lang.annotation.*;
 
 /**
  * Byte类型数据的验证注解
+ *
  * @author lwyang
+ * @see ByteValidator
  */
 @Inherited
 @Documented

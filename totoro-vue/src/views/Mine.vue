@@ -1,49 +1,18 @@
 <template>
     <div>
-        <div style="margin-top: 5rem">
+        <van-row type="flex " justify="space-between">
+            <van-col span="24">
+                <div id="header">TODO</div>
+            </van-col>
+        </van-row>
 
-        <div id="image">
-            <van-image
-                    round
-                    width="5rem"
-                    height="5rem"
-                    src="https://img.yzcdn.cn/vant/cat.jpeg"
-            />
-        </div>
-        <div v-if="isLogin" @click="customerSetting">
-            <div id="info" style="float: left">
-                <div id="username">{{username}}</div>
-                <div id="points">积分值: {{points}}</div>
-            </div>
-            <van-icon name="records" size="2.1rem" style="float: right; margin-right: 2rem; margin-top: 1.5rem" />
+        <UserInfo :isLogin="isLogin"
+                  :sex="sex"
+                  :points="points"
+                  :username="username"/>
 
-        </div>
-        <div v-else >
-            <div style="height: 5rem; float:left; line-height: 3rem">
-                <p >
-                    <router-link to="/login" id="loginOrRegister">
-                        登录 / 注册
-                    </router-link>
-                </p>
-            </div>
-        </div>
-        </div>
+        <OrderStatus/>
 
-        <van-grid style="clear: both;padding-top: 2rem" clickable gutter=".2rem" icon-size="2.5rem">
-            <van-grid-item icon="credit-pay" text="文字" >
-                <p slot="text" style="font-size: .8rem; margin-top: .4rem">代付款</p>
-            </van-grid-item>
-            <van-grid-item icon="send-gift-o" text="文字" >
-                <p slot="text" style="font-size: .8rem; margin-top: .4rem">代收货</p>
-            </van-grid-item>
-            <van-grid-item icon="comment-o" text="文字" >
-                <p slot="text" style="font-size: .8rem; margin-top: .4rem">代评价</p>
-            </van-grid-item>
-            <van-grid-item icon="orders-o" text="文字" >
-
-                <p slot="text" style="font-size: .8rem; margin-top: .4rem; ">订 单</p>
-            </van-grid-item>
-        </van-grid>
 
         <div style="text-align: center; width: 100%; height: 15rem; line-height: 15rem; color: #c8c9cc; font-size: 2rem">待 开 发...</div>
     </div>
@@ -51,12 +20,11 @@
 
 <script>
     import Vue from 'vue';
-    import { Image } from 'vant';
-    import { Row, Col } from 'vant';
-    import { Grid, GridItem } from 'vant';
+    import {Image} from 'vant';
+    import {getCustomer} from "../api/customer";
+    import UserInfo from "../components/mine/UserInfo";
+    import OrderStatus from "../components/mine/OrderStatus";
 
-    Vue.use(Grid).use(GridItem);
-    Vue.use(Row).use(Col);
     Vue.use(Image);
 
     export default {
@@ -64,7 +32,10 @@
         data() {
             return {
                 username: window.localStorage.getItem("username"),
-                points:'0'
+                points: 0,
+                sex: 0,
+                age: 0,
+                email: ''
             }
         },
         computed: {
@@ -78,26 +49,33 @@
             }
         },
         components: {
+            OrderStatus,
+            UserInfo
+        },
+        created() {
+            let username = window.localStorage.getItem("username")
+            if(username === '' || username === null){
+                return
+            }
+            getCustomer(username).then(res => {
+                let customer = res.data.data
+                this.username = customer.username
+                this.age = customer.age
+                this.sex = customer.sex
+                this.email = customer.email
+                this.points = customer.points
+            }).catch(()=>{})
         }
     }
 </script>
 
 <style scoped>
-#image{
-    float: left;
-    margin-left: 3rem;
-    margin-right: 3rem;
-}
-#username{
-    margin-top: .6rem;
-    font-size: 1.6rem;
-    font-family: Consolas;
-}
-#points {
-    margin-top: 1rem;
-}
-#loginOrRegister{
-    font-size: 1.6rem;
-}
-
+    #header {
+        height: 2.5rem;
+        width: 100%;
+        margin: auto;
+        background-color: #969799;
+        text-align: center;
+        line-height: 3rem;
+    }
 </style>

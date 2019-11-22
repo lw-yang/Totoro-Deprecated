@@ -20,17 +20,17 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/components/customer/Login')
+    component: () => import('@/views/mine/Login')
   },
   {
     path: '/register',
     name: 'register',
-    component: () => import('@/components/customer/Register')
+    component: () => import('@/views/mine/Register')
   },
   {
     path: '/customerSetting',
     name: 'customerSetting',
-    component: () => import('@/components/customer/CustomerSetting')
+    component: () => import('@/views/mine/CustomerSetting')
   }
 ]
 

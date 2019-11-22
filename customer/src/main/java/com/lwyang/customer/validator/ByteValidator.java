@@ -10,7 +10,8 @@ import java.util.stream.Collectors;
 
 
 /**
- * 自定义Byte类型的验证器
+ * 自定义Byte类型的验证器, 针对{@link ByteSupport}注解
+ *
  * @author lwyang
  */
 public class ByteValidator implements ConstraintValidator<ByteSupport, java.lang.Byte> {
