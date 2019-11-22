@@ -9,6 +9,7 @@
 
 <style>
 #app{
-  margin-top: 2rem;
+  /*margin-top: 2rem;*/
 }
+
 </style>
