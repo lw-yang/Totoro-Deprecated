@@ -185,6 +185,7 @@
 
     #sexValue{
         display: flex;
+        height: 1.8rem;
     }
 
     .flexDiv{
@@ -203,7 +204,7 @@
 <style>
     .van-field{
         display: flex;
-        height: 1.4rem;
+        height: 1.2rem;
         align-items: center;
         margin: 2rem 0 0 1.8rem;
     }

@@ -72,6 +72,7 @@
                     window.localStorage.setItem("token", token)
                     window.localStorage.setItem("username", this.username)
                     this.$router.push('/mine')
+
                 }).catch(()=>{})
             }
         },

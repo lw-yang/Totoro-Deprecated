@@ -206,6 +206,7 @@
 
     #sexValue{
         display: flex;
+        height: 1.8rem;
     }
 
     #edit{
@@ -223,7 +224,7 @@
 
     #dialogText{
         text-align: center;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 </style>
 
@@ -248,6 +249,12 @@
         align-items: center;
     }
 
+    .van-field{
+        display: flex;
+        height: 1.7rem;
+        align-items: center;
+        margin: 2rem 0 0 1.8rem;
+    }
     .van-field__label{
         font-size: 1.3rem;
         flex: 1.1;
