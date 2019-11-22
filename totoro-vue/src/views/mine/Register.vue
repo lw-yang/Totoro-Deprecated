@@ -206,12 +206,13 @@
         display: flex;
         height: 1.2rem;
         align-items: center;
-        margin: 2rem 0 0 1.8rem;
+        margin-top: 2rem;
     }
     .van-field__label{
         font-size: 1.3rem;
         flex: 1.1;
         margin-right: 1.3rem;
+        margin-left: 2rem;
     }
     .van-cell__value{
         font-size: 1.3rem;

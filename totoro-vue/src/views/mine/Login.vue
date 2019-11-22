@@ -32,8 +32,8 @@
             </van-button>
         </div>
 
-        <van-row id="register">
-            <van-col span="10" offset="16">
+        <van-row id="register" type="flex" justify="end">
+            <van-col id="registerText">
                 <router-link to="/register">新用户注册</router-link>
             </van-col>
         </van-row>
@@ -113,11 +113,14 @@
     }
 
     #register{
+        display: flex;
         margin-top: 2rem;
+        margin-right: 3rem;
         font-size: .8rem;
         color: #1989fa;
     }
-
+    #registerText{
+    }
 
 </style>
 
@@ -127,14 +130,16 @@
         display: flex;
         height: 3.5rem;
         align-items: center;
-        margin: 2rem 0 0 1.8rem;
+        margin-top: 2rem;
     }
     .van-field__label{
         font-size: 1.3rem;
         flex: 1.1;
+        margin-left: 2rem;
         margin-right: 1.5rem;
     }
     .van-cell__value{
+        display: flex;
         font-size: 1.3rem;
         flex: 3;
     }
