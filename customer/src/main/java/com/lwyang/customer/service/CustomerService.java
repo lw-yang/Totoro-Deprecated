@@ -1,9 +1,9 @@
 package com.lwyang.customer.service;
 
-import com.lwyang.customer.vo.CustomerEditVo;
-import com.lwyang.customer.vo.CustomerVo;
-import com.lwyang.customer.vo.LoginVo;
-import com.lwyang.customer.vo.RegisterVo;
+import com.lwyang.customer.vo.CustomerEditDTO;
+import com.lwyang.customer.vo.CustomerDTO;
+import com.lwyang.customer.vo.LoginDTO;
+import com.lwyang.customer.vo.RegisterDTO;
 
 import java.util.Map;
 import java.util.Optional;
@@ -14,11 +14,11 @@ import java.util.Optional;
  */
 public interface CustomerService {
 
-    Map<String, String> addCustomer(RegisterVo registerVo);
+    Map<String, String> addCustomer(RegisterDTO registerDTO);
 
-    Map<String,String> login(LoginVo loginVo);
+    Map<String,String> login(LoginDTO loginDTO);
 
-    CustomerVo getCustomer(String username);
+    CustomerDTO getCustomer(String username);
 
-    Optional editCustomer(CustomerEditVo customerEditVo);
+    Optional editCustomer(CustomerEditDTO customerEditDTO);
 }

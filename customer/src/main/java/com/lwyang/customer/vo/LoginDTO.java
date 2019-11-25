@@ -19,7 +19,7 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @Builder
 @ApiModel
-public class LoginVo {
+public class LoginDTO {
 
     @ApiModelProperty(value = "用户名", example = "lwyang", dataType = "String")
     @NotEmpty(message = "用户名不能为空")

@@ -8,10 +8,10 @@ import com.lwyang.customer.enums.CustomerConstEnum;
 import com.lwyang.customer.enums.CustomerErrorEnum;
 import com.lwyang.customer.exception.CustomerException;
 import com.lwyang.customer.service.CustomerService;
-import com.lwyang.customer.vo.CustomerEditVo;
-import com.lwyang.customer.vo.CustomerVo;
-import com.lwyang.customer.vo.LoginVo;
-import com.lwyang.customer.vo.RegisterVo;
+import com.lwyang.customer.vo.CustomerEditDTO;
+import com.lwyang.customer.vo.CustomerDTO;
+import com.lwyang.customer.vo.LoginDTO;
+import com.lwyang.customer.vo.RegisterDTO;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -38,40 +38,40 @@ public class CustomerServiceImpl implements CustomerService {
     private ICache cache;
 
     @Override
-    public Map<String, String> addCustomer(RegisterVo registerVo){
-        int count = customerMapper.countByUsername(registerVo.getUsername());
+    public Map<String, String> addCustomer(RegisterDTO registerDTO){
+        int count = customerMapper.countByUsername(registerDTO.getUsername());
         if (count != 0){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_USERNAME_EXIST);
         }
-        count = customerMapper.countByEmail(registerVo.getEmail());
+        count = customerMapper.countByEmail(registerDTO.getEmail());
         if (count != 0){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_EMAIL_EXIST);
         }
 
         Customer customer = new Customer();
-        BeanUtils.copyProperties(registerVo, customer);
+        BeanUtils.copyProperties(registerDTO, customer);
 
         Long id = IdUtil.nextId();
         customer.setId(id);
-        customer.setPassword(DigestUtils.md5Hex(registerVo.getPassword()));
+        customer.setPassword(DigestUtils.md5Hex(registerDTO.getPassword()));
         customer.setCreateTime(LocalDateTime.now());
         customer.setUpdateTime(LocalDateTime.now());
         if (0 == customerMapper.insertSelective(customer)){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_INSERT_ERROR);
         }
         Map<String, String> returnData = new HashMap<>(1,1);
-        returnData.put(CustomerConstEnum.USERNAME.getStr(),registerVo.getUsername());
+        returnData.put(CustomerConstEnum.USERNAME.getStr(), registerDTO.getUsername());
         return returnData;
     }
 
     @Override
-    public Map<String,String> login(LoginVo loginVo){
-        Customer customer = customerMapper.selectByUsername(loginVo.getUsername());
+    public Map<String,String> login(LoginDTO loginDTO){
+        Customer customer = customerMapper.selectByUsername(loginDTO.getUsername());
         if (null == customer){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_NOT_EXIST);
         }
 
-        String cryptPassword = DigestUtils.md5Hex(loginVo.getPassword());
+        String cryptPassword = DigestUtils.md5Hex(loginDTO.getPassword());
         if (!StringUtils.equals(cryptPassword, customer.getPassword())){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_PASSWORD_ERROR);
         }
@@ -84,25 +84,25 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerVo getCustomer(String username){
+    public CustomerDTO getCustomer(String username){
         Customer customer = customerMapper.selectByUsername(username);
         if (customer == null){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_NOT_EXIST);
         }
 
-        CustomerVo customerVo = new CustomerVo();
-        BeanUtils.copyProperties(customer, customerVo);
-        return customerVo;
+        CustomerDTO customerDTO = new CustomerDTO();
+        BeanUtils.copyProperties(customer, customerDTO);
+        return customerDTO;
     }
 
     @Override
-    public Optional editCustomer(CustomerEditVo customerEditVo){
-        int count = customerMapper.countByEmail(customerEditVo.getEmail());
+    public Optional editCustomer(CustomerEditDTO customerEditDTO){
+        int count = customerMapper.countByEmail(customerEditDTO.getEmail());
         if (count != 0){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_EMAIL_EXIST);
         }
         Customer customer = new Customer();
-        BeanUtils.copyProperties(customerEditVo, customer);
+        BeanUtils.copyProperties(customerEditDTO, customer);
         customer.setUpdateTime(LocalDateTime.now());
         if (0 == customerMapper.updateByUsernameSelective(customer)){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_UPDATE_ERROR);
