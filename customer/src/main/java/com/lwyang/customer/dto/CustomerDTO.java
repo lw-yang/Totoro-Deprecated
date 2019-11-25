@@ -1,4 +1,4 @@
-package com.lwyang.customer.vo;
+package com.lwyang.customer.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

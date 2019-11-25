@@ -1,4 +1,4 @@
-package com.lwyang.customer.vo;
+package com.lwyang.customer.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

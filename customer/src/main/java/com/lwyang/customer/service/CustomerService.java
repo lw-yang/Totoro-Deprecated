@@ -1,9 +1,9 @@
 package com.lwyang.customer.service;
 
-import com.lwyang.customer.vo.CustomerEditDTO;
-import com.lwyang.customer.vo.CustomerDTO;
-import com.lwyang.customer.vo.LoginDTO;
-import com.lwyang.customer.vo.RegisterDTO;
+import com.lwyang.customer.dto.CustomerEditDTO;
+import com.lwyang.customer.dto.CustomerDTO;
+import com.lwyang.customer.dto.LoginDTO;
+import com.lwyang.customer.dto.RegisterDTO;
 
 import java.util.Map;
 import java.util.Optional;

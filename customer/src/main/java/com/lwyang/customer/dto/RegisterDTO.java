@@ -1,4 +1,4 @@
-package com.lwyang.customer.vo;
+package com.lwyang.customer.dto;
 
 import com.lwyang.customer.annotation.ByteSupport;
 import io.swagger.annotations.ApiModel;
