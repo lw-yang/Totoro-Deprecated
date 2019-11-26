@@ -21,7 +21,7 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @Builder
 @ApiModel
-public class CustomerEditDTO {
+public class EditCustomerDTO {
 
     @ApiModelProperty(value = "用户ID", example = "1", dataType = "String")
     //TODO 前端Long类型会造成精度丢失，所以这里用String类型，但可以自定义Json转换器将String 转 Long

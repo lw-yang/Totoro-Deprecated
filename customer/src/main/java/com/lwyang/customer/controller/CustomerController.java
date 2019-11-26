@@ -5,7 +5,7 @@ import com.lwyang.common.util.Result;
 import com.lwyang.customer.enums.CustomerErrorEnum;
 import com.lwyang.customer.exception.CustomerException;
 import com.lwyang.customer.service.CustomerService;
-import com.lwyang.customer.dto.CustomerEditDTO;
+import com.lwyang.customer.dto.EditCustomerDTO;
 import com.lwyang.customer.dto.CustomerDTO;
 import com.lwyang.customer.dto.LoginDTO;
 import com.lwyang.customer.dto.RegisterDTO;
@@ -58,8 +58,8 @@ public class CustomerController {
 
     @PutMapping("/")
     @ApiOperation(value = "更新用户信息", response = Result.class)
-    public Optional updateCustomer(@RequestBody @Validated CustomerEditDTO customerEditDTO){
-        return customerService.editCustomer(customerEditDTO);
+    public Optional updateCustomer(@RequestBody @Validated EditCustomerDTO editCustomerDTO){
+        return customerService.editCustomer(editCustomerDTO);
     }
 
 }

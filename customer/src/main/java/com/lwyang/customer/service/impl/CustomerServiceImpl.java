@@ -8,11 +8,10 @@ import com.lwyang.customer.enums.CustomerConstEnum;
 import com.lwyang.customer.enums.CustomerErrorEnum;
 import com.lwyang.customer.exception.CustomerException;
 import com.lwyang.customer.service.CustomerService;
-import com.lwyang.customer.dto.CustomerEditDTO;
+import com.lwyang.customer.dto.EditCustomerDTO;
 import com.lwyang.customer.dto.CustomerDTO;
 import com.lwyang.customer.dto.LoginDTO;
 import com.lwyang.customer.dto.RegisterDTO;
-import io.swagger.models.auth.In;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -98,14 +97,14 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Optional editCustomer(CustomerEditDTO customerEditDTO){
-        int count = customerMapper.countByEmail(customerEditDTO.getEmail());
+    public Optional editCustomer(EditCustomerDTO editCustomerDTO){
+        int count = customerMapper.countByEmail(editCustomerDTO.getEmail());
         if (count != 0){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_EMAIL_EXIST);
         }
         Customer customer = new Customer();
-        BeanUtils.copyProperties(customerEditDTO, customer);
-        customer.setId(Long.valueOf(customerEditDTO.getId()));
+        BeanUtils.copyProperties(editCustomerDTO, customer);
+        customer.setId(Long.valueOf(editCustomerDTO.getId()));
         customer.setUpdateTime(LocalDateTime.now());
         if (0 == customerMapper.updateByPrimaryKeySelective(customer)){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_UPDATE_ERROR);

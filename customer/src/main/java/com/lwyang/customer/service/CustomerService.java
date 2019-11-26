@@ -1,6 +1,6 @@
 package com.lwyang.customer.service;
 
-import com.lwyang.customer.dto.CustomerEditDTO;
+import com.lwyang.customer.dto.EditCustomerDTO;
 import com.lwyang.customer.dto.CustomerDTO;
 import com.lwyang.customer.dto.LoginDTO;
 import com.lwyang.customer.dto.RegisterDTO;
@@ -20,5 +20,5 @@ public interface CustomerService {
 
     CustomerDTO getCustomer(Long userId);
 
-    Optional editCustomer(CustomerEditDTO customerEditDTO);
+    Optional editCustomer(EditCustomerDTO editCustomerDTO);
 }
