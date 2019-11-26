@@ -2,6 +2,7 @@ package com.lwyang.category.service.impl;
 
 import com.lwyang.category.dao.CategoryMapper;
 import com.lwyang.category.dto.CategoryDTO;
+import com.lwyang.category.dto.EditCategoryDTO;
 import com.lwyang.category.entity.Category;
 import com.lwyang.category.enums.CategoryConstEnum;
 import com.lwyang.category.enums.CategoryErrorEnum;
@@ -41,8 +42,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryDTO getCategory(String categoryId) {
-        Category category = categoryMapper.selectByPrimaryKey(Long.valueOf(categoryId));
+    public CategoryDTO getCategory(Long categoryId) {
+        Category category = categoryMapper.selectByPrimaryKey(categoryId);
+        if (category == null){
+            throw new CategoryException(CategoryErrorEnum.CATEGORY_NOT_EXIST);
+        }
         CategoryDTO categoryDTO = new CategoryDTO();
         BeanUtils.copyProperties(category, categoryDTO);
         return categoryDTO;
@@ -63,5 +67,16 @@ public class CategoryServiceImpl implements CategoryService {
         Map<String, String> returnData = new HashMap<>(1,1);
         returnData.put(CategoryConstEnum.CATEGORY_ID.getStr(), String.valueOf(id));
         return returnData;
+    }
+
+    @Override
+    public Optional editCategory(EditCategoryDTO editCategoryDTO){
+
+        Category category = new Category();
+        BeanUtils.copyProperties(editCategoryDTO, category);
+        if (0 == categoryMapper.updateByPrimaryKeySelective(category)){
+            throw new CategoryException(CategoryErrorEnum.CATEGORY_UPDATE_ERROR);
+        }
+        return Optional.empty();
     }
 }

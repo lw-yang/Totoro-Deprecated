@@ -9,28 +9,28 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
- * category传输实体
- * @author lwyang  2019/11/25
+ * @author lwyang  2019/11/26
  */
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CategoryDTO {
+public class EditCategoryDTO {
 
     @JsonDeserialize(using = String2LongDeserialize.class)
     @JsonSerialize(using = Long2StringSerialize.class)
+    @NotNull(message = "请输入类别Id")
     private Long id;
 
-    @NotEmpty(message = "请输入类别名称")
     private String name;
 
     @JsonDeserialize(using = String2LongDeserialize.class)
     @JsonSerialize(using = Long2StringSerialize.class)
     private Long parentId;
+
 
 }

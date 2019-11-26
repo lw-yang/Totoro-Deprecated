@@ -1,6 +1,7 @@
 package com.lwyang.category.controller;
 
 import com.lwyang.category.dto.CategoryDTO;
+import com.lwyang.category.dto.EditCategoryDTO;
 import com.lwyang.category.service.CategoryService;
 import com.lwyang.common.annotation.ResultBodyAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Category模块Controller类
@@ -29,12 +31,17 @@ public class CategoryController {
     }
 
     @GetMapping("/{categoryId}")
-    public CategoryDTO getCategory(@PathVariable("categoryId") String categoryId){
+    public CategoryDTO getCategory(@PathVariable("categoryId") Long categoryId){
         return categoryService.getCategory(categoryId);
     }
 
     @PostMapping("/")
     public Map<String, String> addCategory(@RequestBody @Validated CategoryDTO categoryDTO){
         return categoryService.addCategory(categoryDTO);
+    }
+
+    @PutMapping("/")
+    public Optional editCategory(@RequestBody @Validated EditCategoryDTO editCategoryDTO){
+        return categoryService.editCategory(editCategoryDTO);
     }
 }

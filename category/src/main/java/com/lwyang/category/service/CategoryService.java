@@ -1,9 +1,11 @@
 package com.lwyang.category.service;
 
 import com.lwyang.category.dto.CategoryDTO;
+import com.lwyang.category.dto.EditCategoryDTO;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Category模块Service接口
@@ -12,7 +14,9 @@ import java.util.Map;
 public interface CategoryService {
     List<CategoryDTO> getRootCategory();
 
-    CategoryDTO getCategory(String categoryId);
+    CategoryDTO getCategory(Long categoryId);
 
     Map<String, String> addCategory(CategoryDTO categoryDTO);
+
+    Optional editCategory(EditCategoryDTO editCategoryDTO);
 }
