@@ -53,11 +53,11 @@
             UserInfo
         },
         created() {
-            let username = window.localStorage.getItem("username")
-            if(username === '' || username === null){
+            let userId = this.$store.getters.userId
+            if(userId === '' || userId === null){
                 return
             }
-            getCustomer(username).then(res => {
+            getCustomer(userId).then(res => {
                 let customer = res.data.data
                 this.username = customer.username
                 this.age = customer.age

@@ -3,90 +3,71 @@
         <NavTop :title="title" @onClickLeft="onClickLeft"/>
 
         <div id="registerForm">
-            <van-field
-                    v-model="username"
-                    clearable
-                    placeholder="请输入用户名"
-                    label-width="120px"
-            >
-                <label class="key" slot="label">
+
+            <van-row class="flexDiv">
+                <label class="key">
                     <van-col>用</van-col>
                     <van-col>户</van-col>
                     <van-col>名:</van-col>
                 </label>
-            </van-field>
-            <van-field
-                    v-model="password"
-                    type="password"
-                    placeholder="请输入密码"
-                    label-width="120px"
-            >
-                <label class="key" slot="label">
+                <input type="text" v-model="username" class="value" placeholder="请输入用户名"/>
+            </van-row>
+            <van-row class="flexDiv">
+                <label class="key">
                     <van-col>密</van-col>
                     <van-col>码:</van-col>
                 </label>
-            </van-field>
-            <van-field
-                    v-model="question"
-                    type="textarea "
-                    placeholder="请输入密保问题"
-                    label-width="120px"
+                <input type="password" v-model="password" class="value" placeholder="请输入密码"/>
+            </van-row>
 
-            >
-                <label class="key" slot="label">
+            <van-row class="flexDiv">
+                <label class="key">
                     <van-col>密</van-col>
                     <van-col>保</van-col>
                     <van-col>问</van-col>
                     <van-col>题:</van-col>
                 </label>
-            </van-field>
-            <van-field
-                    v-model="answer"
-                    type="textarea "
-                    label="密保答案:"
-                    placeholder="请输入密保答案"
-                    label-width="120px"
-            >
-                <label class="key" slot="label">
+                <input type="text"  v-model="question" class="value" placeholder="请输入密保问题"/>
+            </van-row>
+            <van-row class="flexDiv">
+                <label class="key">
                     <van-col>密</van-col>
                     <van-col>保</van-col>
                     <van-col>答</van-col>
                     <van-col>案:</van-col>
                 </label>
-            </van-field>
-            <van-field
-                    v-model="email"
-                    type="email "
-                    label="邮 箱:"
-                    placeholder="请输入邮箱"
-                    label-width="120px"
-            >
-                <label class="key" slot="label">
+                <input type="text"  v-model="answer" class="value" placeholder="请输入密保答案"/>
+            </van-row>
+
+            <van-row class="flexDiv">
+                <label class="key">
                     <van-col>邮</van-col>
                     <van-col>箱:</van-col>
                 </label>
-            </van-field>
+                <input type="email" v-model="email" class="value" placeholder="请输入邮箱"/>
+            </van-row>
 
-            <van-field id="age">
-                <label slot="label" class="key">
+            <van-row class="flexDiv">
+                <label class="key">
                     <van-col>年</van-col>
                     <van-col>龄:</van-col>
                 </label>
-                <van-stepper id="ageValue" slot="input" v-model="age" integer  step="1" min="1" max="100"/>
+                <div class="value">
+                    <van-stepper id="ageValue"  v-model="age" integer  step="1" min="1" max="100"/>
+                </div>
+            </van-row>
 
-            </van-field>
-
-            <van-field id="sex">
-                <label slot="label" class="key">
+            <van-row class="flexDiv">
+                <label class="key">
                     <van-col>性</van-col>
                     <van-col>别:</van-col>
                 </label>
-
-                <van-radio-group id="sexValue" slot="input" v-model="sex" icon-size="1rem" >
+                <van-radio-group id="sexValue" class="value" v-model="sex" icon-size="1rem" >
                     <van-radio name="1" style="margin-right: 1rem">男</van-radio>
                     <van-radio name="2">女</van-radio>
                 </van-radio-group>
-            </van-field>
+            </van-row>
+
         </div>
 
         <div class="flexDiv">
@@ -163,19 +144,24 @@
 
 <style scoped>
 
-    .registerForm{
-
+    #registerForm{
+        background-color: #fff7cc;
     }
 
     .key{
         display: flex;
         justify-content: space-between;
         font-size: 1.3rem;
-        flex: 1.1;
+        flex: 1.2;
+        margin-left: 1.2rem;
+        margin-right: .5rem;
+        padding: .3rem;
     }
-    #age, #sex{
+    .value{
         display: flex;
-        align-items: center;
+        flex: 3;
+        font-size: 1.2rem;
+        margin-right: 1.2rem;
     }
     #ageValue{
         display: flex;
@@ -188,50 +174,20 @@
         height: 1.8rem;
     }
 
+    .flexDiv:first-child{
+        padding-top: 1.5rem;
+    }
     .flexDiv{
         display: flex;
         justify-content: center;
-        padding-top: 2rem;
+        padding-top: 1rem;
     }
 
     #registerButton{
+        margin-top: 1rem;
         height: 2rem;
         font-size: 1rem;
         width: 70%;
     }
-</style>
 
-<style>
-    .van-field{
-        display: flex;
-        height: 1.2rem;
-        align-items: center;
-        margin-top: 2rem;
-    }
-    .van-field__label{
-        font-size: 1.3rem;
-        flex: 1.1;
-        margin-right: 1.3rem;
-        margin-left: 2rem;
-    }
-    .van-cell__value{
-        font-size: 1.3rem;
-        flex: 3;
-    }
-
-    .van-stepper__minus, .van-stepper__plus{
-        height: 1.8rem;
-        flex: 1;
-    }
-    .van-stepper__input{
-        height: 1.8rem;
-        flex: 2;
-        font-size: 1.1rem;
-    }
-    .van-toast__text{
-        line-height: 1.3rem;
-        width: 5rem;
-        height: 1.3rem;
-        font-size: .8rem;
-    }
 </style>

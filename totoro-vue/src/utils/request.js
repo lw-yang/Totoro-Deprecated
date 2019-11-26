@@ -26,8 +26,7 @@ service.interceptors.response.use(
         const res = response.data
         if (res.code !== 0){
             Toast({
-                type: 'html',
-                message: '<P style="font-size: .6rem;margin: .4rem">'+res.message+'</P>',
+                message: res.message,
                 position: 'bottom',
                 closeOnClick: "true",
             });
@@ -39,3 +38,4 @@ service.interceptors.response.use(
 )
 
 export default service
+

@@ -1,0 +1,26 @@
+/*全局Toast样式设置*/
+.van-toast__text{
+    line-height: 1.3rem;
+    width: 5.5rem;
+    height: 1.3rem;
+    font-size: .7rem;
+}
+
+.van-dialog{
+    width: 17rem;
+    height: 6rem;
+}
+
+.van-dialog__footer .van-button--large{
+    font-size: 1rem;
+}
+
+button.van-stepper__minus, button.van-stepper__plus{
+    height: 1.8rem;
+    flex: 1;
+}
+input.van-stepper__input{
+    height: 1.8rem;
+    flex: 2;
+    font-size: 1.1rem;
+}

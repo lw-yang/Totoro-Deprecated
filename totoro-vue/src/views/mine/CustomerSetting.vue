@@ -16,50 +16,43 @@
 
         <van-popup v-model="show" round closeable position="top">
             <div id="popup">
-                <van-field
-                        disabled
-                        v-model="username"
-                        clearable
-                >
-                    <label slot="label" class="key">
+                <van-row class="flexDiv">
+                    <label class="key">
                         <van-col>用</van-col>
                         <van-col>户</van-col>
                         <van-col>名:</van-col>
                     </label>
-                </van-field>
+                    <input type="text" disabled v-model="username" class="value"/>
+                </van-row>
 
-                <van-field
-                        @input="editEmail"
-                        v-model="email"
-                        type="email "
-                        placeholder="请输入邮箱"
-                >
-                    <label slot="label" class="key">
-                        <van-col>邮</van-col>
+                <van-row class="flexDiv">
+                    <label class="key">
+                        <div>邮</div>
                         <van-col>箱:</van-col>
                     </label>
-                </van-field>
+                    <input type="email" @input="editEmail" v-model="email" class="value" placeholder="请输入邮箱"/>
+                </van-row>
 
-                <van-field id="age">
-                    <label slot="label" class="key">
+                <van-row class="flexDiv">
+                    <label class="key">
                         <van-col>年</van-col>
                         <van-col>龄:</van-col>
                     </label>
-                    <van-stepper id="ageValue" slot="input" @change="editAge" v-model="age" integer  step="1" min="1" max="100"/>
+                    <div class="value">
+                        <van-stepper id="ageValue" @change="editAge" v-model="age" integer  step="1" min="1" max="100"/>
+                    </div>
+                </van-row>
 
-                </van-field>
-
-                <van-field id="sex">
-                    <label slot="label" class="key">
+                <van-row class="flexDiv">
+                    <label class="key">
                         <van-col>性</van-col>
                         <van-col>别:</van-col>
                     </label>
-
-                    <van-radio-group id="sexValue" slot="input" @change="editSex" v-model="sex" icon-size="1rem" >
+                    <van-radio-group id="sexValue" class="value" @change="editSex" v-model="sex" icon-size="1rem" >
                         <van-radio name="1" style="margin-right: 1rem">男</van-radio>
                         <van-radio name="2">女</van-radio>
                     </van-radio-group>
-                </van-field>
+                </van-row>
 
             </div>
             <div id="editButton">
@@ -130,7 +123,7 @@
             },
             edit: function () {
                 this.show = false
-                this.editData.username = this.username
+                this.editData.id = this.$store.getters.userId
                 editCustomer(this.editData).then(res =>{
                     console.log("return: "+res.data.code)
                     Toast({
@@ -138,7 +131,7 @@
                         position: 'bottom',
                         closeOnClick: "true",
                     });
-                }).catch(()=>{})
+                }).catch((reason)=>{console.log(reason)})
             },
             editEmail: function () {
                 this.editData.email = this.email
@@ -153,8 +146,11 @@
         computed:{
         },
         created() {
-            let username = window.localStorage.getItem("username")
-            getCustomer(username).then(res => {
+            let userId = this.$store.getters.userId
+            if(userId === '' || userId === null){
+                return
+            }
+            getCustomer(userId).then(res => {
                 let customer = res.data.data
                 this.username = customer.username
                 this.age = customer.age
@@ -166,11 +162,11 @@
 </script>
 
 <style scoped>
-    .key{
+    input:disabled{
+        background-color: #ffffff;
         color: #7d7e80;
-        margin-top: .5rem;
+        border: 0;
     }
-
     .button{
         height: 2.5rem;
         font-size: 1.1rem;
@@ -182,12 +178,9 @@
     }
 
     #popup{
-        padding-top: 2rem;
+        padding-top: 1rem;
         padding-left: 2rem;
-    }
-    #age, #sex{
-        display: flex;
-        align-items: center;
+        padding-right: 2rem;
     }
 
     .key{
@@ -195,8 +188,15 @@
         align-items: center;
         justify-content: space-between;
         margin-right: 1rem;
-        flex: 1.1;
+        flex: 1;
         font-size: 1.3rem;
+        color: #7d7e80;
+    }
+    .value{
+        display: flex;
+        flex: 3;
+        padding: 0;
+        font-size: 1.2rem;
     }
     #ageValue{
         display: flex;
@@ -226,58 +226,10 @@
         text-align: center;
         font-size: 1.1rem;
     }
-</style>
-
-<style>
-
-    #customerSetting{
-        /*padding-top: 2rem;*/
-    }
-
-    .van-dialog{
-        width: 17rem;
-        height: 6rem;
-    }
-
-    .van-dialog__footer .van-button--large{
-        font-size: 1rem;
-    }
-
-    .van-cell{
+    .flexDiv{
         display: flex;
-        height: 3rem;
+        justify-content: center;
         align-items: center;
+        margin-top: 1.5rem;
     }
-
-    .van-field{
-        display: flex;
-        height: 1.7rem;
-        align-items: center;
-        margin: 2rem 0 0 1.8rem;
-    }
-    .van-field__label{
-        font-size: 1.3rem;
-        flex: 1.1;
-    }
-    .van-cell__value{
-        flex: 3;
-        font-size: 1.1rem;
-    }
-
-    .van-stepper__minus, .van-stepper__plus{
-        height: 1.8rem;
-        flex: 1;
-    }
-    .van-stepper__input{
-        height: 1.8rem;
-        flex: 2;
-        font-size: 1.1rem;
-    }
-    .van-toast__text{
-        line-height: 1.3rem;
-        width: 5rem;
-        height: 1.3rem;
-        font-size: .8rem;
-    }
-
 </style>
