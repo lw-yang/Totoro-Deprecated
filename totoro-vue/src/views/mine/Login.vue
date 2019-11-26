@@ -3,27 +3,22 @@
         <NavTop :title="title" @onClickLeft="onClickLeft"/>
 
         <div id="login">
-            <van-field
-                    v-model="username"
-                    clearable
-                    label="用户名: "
-                    placeholder="请输入用户名">
-                <label class="key" slot="label">
+            <van-row class="flexDiv">
+                <label class="key">
                     <van-col>用</van-col>
                     <van-col>户</van-col>
                     <van-col>名:</van-col>
                 </label>
-            </van-field>
-            <van-field
-                    v-model="password"
-                    type="password"
-                    label="密 码:"
-                    placeholder="请输入密码">
-                <label class="key" slot="label">
+                <input type="text" v-model="username" class="value"  placeholder="请输入用户名"/>
+            </van-row>
+            <van-row class="flexDiv">
+                <label class="key">
                     <van-col>密</van-col>
                     <van-col>码:</van-col>
                 </label>
-            </van-field>
+                <input type="password" v-model="password" class="value"  placeholder="请输入密码"/>
+            </van-row>
+
         </div>
 
         <div class="flexDiv">
@@ -33,8 +28,8 @@
         </div>
 
         <van-row id="register" type="flex" justify="end">
-            <van-col id="registerText">
-                <router-link to="/register">新用户注册</router-link>
+            <van-col >
+                <router-link to="/register" id="registerText">新用户注册</router-link>
             </van-col>
         </van-row>
     </div>
@@ -68,12 +63,13 @@
             login:function () {
                 login(this.loginData).then(res => {
                     let token = res.data.data.token
+                    let userId = res.data.data.userId
                     this.$store.commit('set_username',this.username)
+                    this.$store.commit('set_userId', userId)
                     window.localStorage.setItem("token", token)
                     window.localStorage.setItem("username", this.username)
                     this.$router.push('/mine')
-
-                }).catch(()=>{})
+                }).catch((reason)=>{console.log(reason)})
             }
         },
         computed:{
@@ -90,22 +86,34 @@
 <style scoped>
 
     #login{
-        background-color: #fff7cc;
-        height: 8rem;
+        height: 9rem;
         display: flex;
         flex-direction: column;
+
     }
+
     .key{
         display: flex;
         justify-content: space-between;
         font-size: 1.3rem;
-        flex: 1.1;
+        flex: 1;
+        margin-left: 1.5rem;
+        margin-right: .5rem;
+        padding: .3rem;
     }
+    .value{
+        display: flex;
+        flex: 3;
+        font-size: 1.2rem;
+        margin-right: 1.5rem;
+    }
+
     .flexDiv{
         display: flex;
         justify-content: center;
         padding-top: 2rem;
     }
+
     #loginButton{
         width: 70%;
         height: 2rem;
@@ -117,31 +125,9 @@
         margin-top: 2rem;
         margin-right: 3rem;
         font-size: .8rem;
-        color: #1989fa;
     }
     #registerText{
-    }
-
-</style>
-
-<style>
-
-    .van-field{
-        display: flex;
-        height: 3.5rem;
-        align-items: center;
-        margin-top: 2rem;
-    }
-    .van-field__label{
-        font-size: 1.3rem;
-        flex: 1.1;
-        margin-left: 2rem;
-        margin-right: 1.5rem;
-    }
-    .van-cell__value{
-        display: flex;
-        font-size: 1.3rem;
-        flex: 3;
+        color: royalblue;
     }
 
 </style>
