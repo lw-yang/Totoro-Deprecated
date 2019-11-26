@@ -29,6 +29,7 @@
             <groupId>com.lwyang</groupId>
             <artifactId>category</artifactId>
         </dependency>
+
     </dependencies>
 
     <build>
