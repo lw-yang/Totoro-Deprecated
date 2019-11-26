@@ -12,6 +12,10 @@ public class IdUtil {
 
     private IdUtil(){}
 
+    /**
+     * 生成Id的工具方法
+     * @return Long类型的ID
+     */
     public static Long nextId(){
         return snowflake.nextId();
     }

@@ -8,7 +8,17 @@ package com.lwyang.common.cache;
  */
 public interface ICache<K, V> {
 
+    /**
+     * 根据Key获取缓存数据
+     * @param key key
+     * @return V
+     */
     V get(K key);
 
+    /**
+     * 设置缓存数据
+     * @param key key
+     * @param value value
+     */
     void set(K key, V value);
 }
