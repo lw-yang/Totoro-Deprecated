@@ -47,13 +47,13 @@ public class CustomerController {
         return customerService.login(loginDTO);
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/{userId}")
     @ApiOperation(value = "获取用户信息", response = Result.class)
-    public CustomerDTO getCustomer(@PathVariable("username") String username){
-        if (StringUtils.isBlank(username)){
+    public CustomerDTO getCustomer(@PathVariable("userId") String userId){
+        if (StringUtils.isEmpty(userId)){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_INVALID_PARAMS);
         }
-        return customerService.getCustomer(username);
+        return customerService.getCustomer(Long.valueOf(userId));
     }
 
     @PutMapping("/")

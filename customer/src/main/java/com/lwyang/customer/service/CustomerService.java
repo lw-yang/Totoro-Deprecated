@@ -18,7 +18,7 @@ public interface CustomerService {
 
     Map<String,String> login(LoginDTO loginDTO);
 
-    CustomerDTO getCustomer(String username);
+    CustomerDTO getCustomer(Long userId);
 
     Optional editCustomer(CustomerEditDTO customerEditDTO);
 }

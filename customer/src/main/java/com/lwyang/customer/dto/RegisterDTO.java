@@ -22,23 +22,23 @@ import javax.validation.constraints.*;
 public class RegisterDTO {
 
     @ApiModelProperty(value = "用户名", example = "lwyang", dataType = "String")
-    @NotEmpty(message = "用户名不能为空")
+    @NotEmpty(message = "请输入用户名")
     private String username;
 
     @ApiModelProperty(value = "密码", example = "123456", dataType = "String")
-    @NotEmpty(message = "密码不能为空")
+    @NotEmpty(message = "请输入密码")
     private String password;
 
     @ApiModelProperty(value = "密保问题", example = "问题", dataType = "String")
-    @NotEmpty(message = "密保问题不能为空")
+    @NotEmpty(message = "请输入密保问题")
     private String question;
 
     @ApiModelProperty(value = "密保答案", example = "答案", dataType = "String")
-    @NotEmpty(message = "密保答案不能为空")
+    @NotEmpty(message = "请输入密保答案")
     private String answer;
 
     @ApiModelProperty(value = "邮箱", example = "1670906161@qq.com", dataType = "String")
-    @Email(message = "邮箱格式不对")
+    @Email(message = "邮箱格式不正确")
     private String email;
 
     @ApiModelProperty(value = "年龄(1-00)", example = "23", dataType = "Integer")

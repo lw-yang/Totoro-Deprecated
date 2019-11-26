@@ -12,6 +12,7 @@ import com.lwyang.customer.dto.CustomerEditDTO;
 import com.lwyang.customer.dto.CustomerDTO;
 import com.lwyang.customer.dto.LoginDTO;
 import com.lwyang.customer.dto.RegisterDTO;
+import io.swagger.models.auth.In;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -78,14 +79,15 @@ public class CustomerServiceImpl implements CustomerService {
 
         String token = UUID.randomUUID().toString().replaceAll("-", "");
         cache.set(CustomerConstEnum.TOKEN.getStr(), token);
-        Map<String, String> returnData = new HashMap<>(1,1);
+        Map<String, String> returnData = new HashMap<>(2,1);
         returnData.put(CustomerConstEnum.TOKEN.getStr(), token);
+        returnData.put(CustomerConstEnum.USER_ID.getStr(), String.valueOf(customer.getId()));
         return returnData;
     }
 
     @Override
-    public CustomerDTO getCustomer(String username){
-        Customer customer = customerMapper.selectByUsername(username);
+    public CustomerDTO getCustomer(Long userId){
+        Customer customer = customerMapper.selectByPrimaryKey(userId);
         if (customer == null){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_NOT_EXIST);
         }
@@ -103,8 +105,9 @@ public class CustomerServiceImpl implements CustomerService {
         }
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerEditDTO, customer);
+        customer.setId(Long.valueOf(customerEditDTO.getId()));
         customer.setUpdateTime(LocalDateTime.now());
-        if (0 == customerMapper.updateByUsernameSelective(customer)){
+        if (0 == customerMapper.updateByPrimaryKeySelective(customer)){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_UPDATE_ERROR);
         }
         return Optional.empty();

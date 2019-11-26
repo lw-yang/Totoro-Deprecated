@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.constraints.*;
 
@@ -22,9 +23,9 @@ import javax.validation.constraints.*;
 @ApiModel
 public class CustomerEditDTO {
 
-    @ApiModelProperty(value = "用户名", example = "lwyang", dataType = "String")
-    @NotEmpty(message = "用户名不能为空")
-    private String username;
+    @ApiModelProperty(value = "用户ID", example = "1", dataType = "String")
+    //TODO 前端Long类型会造成精度丢失，所以这里用String类型，但可以自定义Json转换器将String 转 Long
+    private String id;
 
     @ApiModelProperty(value = "邮箱", example = "1670906161@qq.com", dataType = "String")
     private String email;
