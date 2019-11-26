@@ -2,7 +2,11 @@ package com.lwyang.category.entity;
 
 import java.time.LocalDateTime;
 
-public class category {
+/**
+ * category模块实体类
+ * @author lwyang
+ */
+public class Category {
     private Long id;
 
     private String name;

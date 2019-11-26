@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/totoro?serverTimezone=Asia/Shanghai
+    druid:
+      initial-size: 10
+      max-active: 50
+      min-idle: 10
+      max-wait: 5000
+      web-stat-filter:
+        enabled: true
+
+  #排除返回值为null的情况
+  jackson:
+    default-property-inclusion: non_null
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+logging:
+  level:
+    com.lwyang.customer.dao : debug
+    com.lwyang.category.dao : debug
