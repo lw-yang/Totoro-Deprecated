@@ -104,7 +104,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
         Customer customer = new Customer();
         BeanUtils.copyProperties(editCustomerDTO, customer);
-        customer.setId(Long.valueOf(editCustomerDTO.getId()));
+        customer.setId(editCustomerDTO.getId());
         customer.setUpdateTime(LocalDateTime.now());
         if (0 == customerMapper.updateByPrimaryKeySelective(customer)){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_UPDATE_ERROR);

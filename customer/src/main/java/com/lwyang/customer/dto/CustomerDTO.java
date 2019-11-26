@@ -1,5 +1,9 @@
 package com.lwyang.customer.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import converter.Long2StringSerialize;
+import converter.String2LongDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +17,8 @@ import java.time.LocalDateTime;
 @Builder
 public class CustomerDTO {
 
+    @JsonDeserialize(using = String2LongDeserialize.class)
+    @JsonSerialize(using = Long2StringSerialize.class)
     private Long id;
 
     private String username;
