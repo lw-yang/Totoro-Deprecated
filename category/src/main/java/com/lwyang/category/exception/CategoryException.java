@@ -4,6 +4,7 @@ import com.lwyang.category.enums.CategoryErrorEnum;
 import com.lwyang.common.exception.TotoroException;
 
 /**
+ * Category模块异常类
  * @author lwyang  2019/11/26
  */
 public class CategoryException extends TotoroException {

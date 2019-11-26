@@ -1,6 +1,7 @@
 package com.lwyang.category.enums;
 
 /**
+ * Category模块常量类
  * @author lwyang  2019/11/26
  */
 public enum  CategoryConstEnum {
