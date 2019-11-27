@@ -19,10 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * 顾客模块业务处理
@@ -97,7 +94,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Optional editCustomer(EditCustomerDTO editCustomerDTO){
+    public Optional editCustomer(EditCustomerDTO editCustomerDTO, Long userId){
 
         if (StringUtils.isEmpty(editCustomerDTO.getEmail()) &&
                 editCustomerDTO.getAge() == null &&
@@ -113,10 +110,18 @@ public class CustomerServiceImpl implements CustomerService {
         }
         Customer customer = new Customer();
         BeanUtils.copyProperties(editCustomerDTO, customer);
-        customer.setId(editCustomerDTO.getId());
+        customer.setId(userId);
         customer.setUpdateTime(LocalDateTime.now());
         if (0 == customerMapper.updateByPrimaryKeySelective(customer)){
             throw new CustomerException(CustomerErrorEnum.CUSTOMER_UPDATE_ERROR);
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional deleteCustomers(List<Long> userIds){
+        if (0 == customerMapper.deleteByPrimaryKeyIn(userIds)){
+            throw new CustomerException(CustomerErrorEnum.CUSTOMER_DELETE_ERROR);
         }
         return Optional.empty();
     }

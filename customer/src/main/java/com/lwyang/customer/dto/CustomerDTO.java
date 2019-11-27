@@ -2,8 +2,8 @@ package com.lwyang.customer.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import converter.Long2StringSerialize;
-import converter.String2LongDeserialize;
+import com.lwyang.common.converter.Long2StringSerialize;
+import com.lwyang.common.converter.String2LongDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

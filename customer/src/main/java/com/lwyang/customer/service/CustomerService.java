@@ -5,6 +5,7 @@ import com.lwyang.customer.dto.CustomerDTO;
 import com.lwyang.customer.dto.LoginDTO;
 import com.lwyang.customer.dto.RegisterDTO;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -20,5 +21,7 @@ public interface CustomerService {
 
     CustomerDTO getCustomer(Long userId);
 
-    Optional editCustomer(EditCustomerDTO editCustomerDTO);
+    Optional editCustomer(EditCustomerDTO editCustomerDTO, Long userId);
+
+    Optional deleteCustomers(List<Long> userIds);
 }
