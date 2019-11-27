@@ -22,3 +22,4 @@ mybatis:
 logging:
   level:
     com.lwyang.customer.dao : debug
+    com.lwyang.category.dao : debug
