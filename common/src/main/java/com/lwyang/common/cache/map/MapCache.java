@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 内存缓存 Map
+ * 内存缓存 Map, 后面会用guava cache替代
  * @author lwyang
  */
 @Service

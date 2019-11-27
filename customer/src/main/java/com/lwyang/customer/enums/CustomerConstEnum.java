@@ -8,6 +8,7 @@ public enum CustomerConstEnum {
 
     TOKEN("token"),
     USERNAME("username"),
+    USER_ID("userId"),
 
     ;
 

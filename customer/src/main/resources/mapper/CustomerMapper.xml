@@ -264,4 +264,11 @@
     </set>
     where username = #{username,jdbcType=VARCHAR}
   </update>
+    <delete id="deleteByPrimaryKeyIn">
+      delete from customer
+      where id in
+      <foreach collection="userIds" open="(" close=")" separator="," item="userId">
+        #{userId,jdbcType=BIGINT}
+      </foreach>
+    </delete>
 </mapper>

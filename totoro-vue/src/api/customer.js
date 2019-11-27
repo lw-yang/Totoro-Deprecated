@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function login(data) {
     return request({
-        url: '/customer/login',
+        url: '/customers/login',
         method: 'post',
         data
     })
@@ -10,7 +10,7 @@ export function login(data) {
 
 export function register(data) {
     return request({
-        url: '/customer/',
+        url: '/customers/',
         method: 'post',
         data
     })
@@ -18,14 +18,14 @@ export function register(data) {
 
 export function getCustomer(data) {
     return request({
-        url: '/customer/' + data,
+        url: '/customers/' + data,
         method: 'get'
     })
 }
 
-export function editCustomer(data) {
+export function editCustomer(data, id) {
     return request({
-        url: '/customer/',
+        url: '/customers/' + id,
         method: 'put',
         data
     })

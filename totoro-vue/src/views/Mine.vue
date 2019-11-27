@@ -1,15 +1,16 @@
 <template>
     <div>
-        <van-row type="flex " justify="space-between">
-            <van-col span="24">
-                <div id="header">TODO</div>
-            </van-col>
-        </van-row>
+<!--        <van-row type="flex " justify="space-between">-->
+<!--            <van-col span="24">-->
+<!--                <div id="header">TODO</div>-->
+<!--            </van-col>-->
+<!--        </van-row>-->
 
         <UserInfo :isLogin="isLogin"
                   :sex="sex"
                   :points="points"
-                  :username="username"/>
+                  :username="username"
+                  :is-vip="isVip"/>
 
         <OrderStatus/>
 
@@ -35,7 +36,8 @@
                 points: 0,
                 sex: 0,
                 age: 0,
-                email: ''
+                email: '',
+                isVip: false
             }
         },
         computed: {
@@ -53,11 +55,11 @@
             UserInfo
         },
         created() {
-            let username = window.localStorage.getItem("username")
-            if(username === '' || username === null){
+            let userId = window.localStorage.getItem("userId")
+            if(userId === '' || userId === null){
                 return
             }
-            getCustomer(username).then(res => {
+            getCustomer(userId).then(res => {
                 let customer = res.data.data
                 this.username = customer.username
                 this.age = customer.age

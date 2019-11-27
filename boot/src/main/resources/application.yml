@@ -17,8 +17,9 @@ spring:
     default-property-inclusion: non_null
 
 mybatis:
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath*:mapper/*.xml
 
 logging:
   level:
     com.lwyang.customer.dao : debug
+    com.lwyang.category.dao : debug

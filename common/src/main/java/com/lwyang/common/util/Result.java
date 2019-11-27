@@ -20,6 +20,11 @@ public class Result<T> {
 
     private T data;
 
+    /**
+     * 返回成功的工具方法
+     * @return Result
+     * @see com.lwyang.common.advice.ResultAdvice
+     */
     public static Result success(){
         return Result.builder()
                 .code(ResultEnum.SUCCESS.getCode())
@@ -27,12 +32,24 @@ public class Result<T> {
                 .build();
     }
 
+    /**
+     * 返回成功的工具方法,并且带有返回数据data
+     * @return Result
+     * @see com.lwyang.common.advice.ResultAdvice
+     */
     public static <T> Result<T> success(T data) {
         Result<T> result = Result.success();
         result.setData(data);
         return result;
     }
 
+    /**
+     * 返回失败的工具方法
+     * @param code 错误码
+     * @param message 错误信息
+     * @return Result
+     * @see com.lwyang.common.advice.ExceptionAdvice
+     */
     public static Result fail(Integer code, String message){
         return Result.builder()
                 .code(code)

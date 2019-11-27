@@ -11,6 +11,10 @@ import org.springframework.web.filter.FormContentFilter;
 @Configuration(proxyBeanMethods = false)
 public class HttpPutConfiguration{
 
+    /**
+     * 向Spring容器注入FormContentFilter以支持PUT方法
+     * @return FormContentFilter
+     */
     @Bean
     public FormContentFilter httpPutFormContentFilter() {
         return new FormContentFilter();

@@ -1,14 +1,18 @@
 package com.lwyang.customer.dao;
 
+import com.lwyang.common.CommonApplication;
+import com.lwyang.customer.CustomerApplication;
+import com.lwyang.customer.dao.CustomerMapper;
 import com.lwyang.customer.entity.Customer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDateTime;
 
-@SpringBootTest
+@SpringBootTest(classes = {CustomerApplication.class, CommonApplication.class})
 class CustomerMapperTest {
 
     @Autowired
@@ -38,7 +42,7 @@ class CustomerMapperTest {
 
     @Test
     void selectByPrimaryKey() {
-        Customer savedCustomer = customerMapper.selectByPrimaryKey(646306834856017920L);
+        Customer savedCustomer = customerMapper.selectByPrimaryKey(646810639557197824L);
         System.out.println(savedCustomer);
     }
 

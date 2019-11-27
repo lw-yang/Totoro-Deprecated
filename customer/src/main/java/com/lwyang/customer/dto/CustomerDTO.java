@@ -1,5 +1,9 @@
-package com.lwyang.customer.vo;
+package com.lwyang.customer.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.lwyang.common.converter.Long2StringSerialize;
+import com.lwyang.common.converter.String2LongDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,8 +15,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CustomerVo {
+public class CustomerDTO {
 
+    @JsonDeserialize(using = String2LongDeserialize.class)
+    @JsonSerialize(using = Long2StringSerialize.class)
     private Long id;
 
     private String username;

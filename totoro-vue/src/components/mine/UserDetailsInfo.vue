@@ -52,26 +52,26 @@
 #userDetailsInfo{
     display: flex;
     flex-direction: column;
-    height: 10rem;
-    background-color: #cccccc;
-    padding: 1.5rem 0 0 1rem;
+    height: 13rem;
+    padding: 1.5rem 0 0 0;
 }
     .row{
+        padding-left: 1rem;
         flex: 1;
         display: flex;
         align-items: center;
-
+        border-bottom: solid 1px #cccccc;
     }
     .key{
-        background-color: #fff7cc;
         display: flex;
         justify-content: space-between;
-        flex: 1.1;
-        font-size: 1.5rem;
+        flex: 1;
+        font-size: 1.3rem;
         margin-right: 1rem;
+        color: #7d7e80;
+        margin-left: 1rem;
     }
     .value{
-        background-color: #fff7cc;
         flex: 3;
         font-size: 1.2rem;
     }

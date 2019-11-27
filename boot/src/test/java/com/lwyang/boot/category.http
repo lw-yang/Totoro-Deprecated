@@ -1,0 +1,36 @@
+GET http://{{baseUrl}}/category/
+Accept: application/json
+
+> {% client.test("a" ,function f() {
+client.assert(response.body.code === 0, "return error")})%}
+###
+
+POST http://{{baseUrl}}/category/
+Content-Type: application/json
+
+{
+  "name": "男鞋",
+  "src": "https://img.yzcdn.cn/vant/apple-2.jpg"
+}
+
+###
+
+PUT http://{{baseUrl}}/category/
+Content-Type: application/json
+
+{
+  "id": "648894189391577088",
+  "name": "数码"
+}
+
+###
+POST http://{{baseUrl}}/category/
+Content-Type: application/json
+
+{
+  "name": "布鞋",
+  "src": "https://img.yzcdn.cn/vant/apple-1.jpg",
+  "parentId": "648922194985877504"
+}
+
+###

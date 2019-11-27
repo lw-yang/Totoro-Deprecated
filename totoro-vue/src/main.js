@@ -6,7 +6,7 @@ import { Dialog } from 'vant'
 import { Row, Col } from 'vant';
 import { NavBar } from 'vant';
 import '@/assets/iconfont.css'
-
+import '@/assets/css/global.css'
 // 全局注册
 Vue.use(Dialog);
 Vue.use(Row).use(Col);

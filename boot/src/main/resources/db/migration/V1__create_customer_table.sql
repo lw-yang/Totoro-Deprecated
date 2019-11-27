@@ -9,7 +9,7 @@ create table customer
 	email varchar(32) not null comment '邮箱地址',
 	age int null comment '年龄',
 	sex tinyint default 1 null comment '1：男 2：女',
-	points int null comment '积分',
+	points int default 0 comment '积分',
 	status tinyint default 1 not null comment '0：禁用 1：正常',
 	login_time datetime null comment '上次登录时间',
 	login_ip varchar(32) null comment '上次登录ip',

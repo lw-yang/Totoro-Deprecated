@@ -2,6 +2,9 @@ package com.lwyang.customer.dao;
 
 import com.lwyang.customer.entity.Customer;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 数据库操作接口
@@ -27,4 +30,6 @@ public interface CustomerMapper {
     Integer countByEmail(String email);
 
     int updateByUsernameSelective(Customer record);
+
+    int deleteByPrimaryKeyIn(@Param("userIds") List<Long> userIds);
 }

@@ -30,6 +30,7 @@
         <module>customer</module>
         <module>boot</module>
         <module>common</module>
+        <module>category</module>
     </modules>
 
     <dependencies>
@@ -104,6 +105,11 @@
             <dependency>
                 <groupId>com.lwyang</groupId>
                 <artifactId>common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lwyang</groupId>
+                <artifactId>category</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

@@ -1,4 +1,4 @@
-package com.lwyang.customer.vo;
+package com.lwyang.customer.dto;
 
 import com.lwyang.customer.annotation.ByteSupport;
 import io.swagger.annotations.ApiModel;
@@ -20,11 +20,7 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @Builder
 @ApiModel
-public class CustomerEditVo {
-
-    @ApiModelProperty(value = "用户名", example = "lwyang", dataType = "String")
-    @NotEmpty(message = "用户名不能为空")
-    private String username;
+public class EditCustomerDTO {
 
     @ApiModelProperty(value = "邮箱", example = "1670906161@qq.com", dataType = "String")
     private String email;

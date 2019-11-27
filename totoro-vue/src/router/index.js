@@ -14,6 +14,21 @@ const routes = [
         path: '/mine',
         name: 'mine',
         component: () => import('@/views/Mine')
+      },
+      {
+        path: '/category',
+        name: 'category',
+        component: () => import('@/views/Category')
+      },
+      {
+        path: '/message',
+        name: 'message',
+        component: () => import('@/views/Message')
+      },
+      {
+        path: '/cart',
+        name: 'cart',
+        component: () => import('@/views/ShoppingCart')
       }
     ]
   },

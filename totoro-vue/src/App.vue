@@ -7,8 +7,7 @@
   </div>
 </template>
 
+<style lang="css" src="./assets/css/vant.css"/>
 <style>
-#app{
-}
 
 </style>
