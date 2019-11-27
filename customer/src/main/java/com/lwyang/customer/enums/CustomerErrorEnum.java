@@ -14,8 +14,7 @@ public enum  CustomerErrorEnum {
     CUSTOMER_PASSWORD_ERROR(1005,"密码错误"),
     CUSTOMER_USERNAME_EXIST(1006,"用户名已存在"),
     CUSTOMER_EMAIL_EXIST(1007,"邮箱已存在"),
-    CUSTOMER_NO_UPDATE(1008,"用户信息无修改"),
-
+    CUSTOMER_NO_UPDATE(1008,"信息无修改"),
     ;
 
     private Integer code;

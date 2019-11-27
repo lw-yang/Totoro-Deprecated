@@ -98,9 +98,18 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Optional editCustomer(EditCustomerDTO editCustomerDTO){
-        int count = customerMapper.countByEmail(editCustomerDTO.getEmail());
-        if (count != 0){
-            throw new CustomerException(CustomerErrorEnum.CUSTOMER_EMAIL_EXIST);
+
+        if (StringUtils.isEmpty(editCustomerDTO.getEmail()) &&
+                editCustomerDTO.getAge() == null &&
+                editCustomerDTO.getSex() == null){
+            throw new CustomerException(CustomerErrorEnum.CUSTOMER_NO_UPDATE);
+        }
+
+        if (editCustomerDTO.getEmail() != null) {
+            int count = customerMapper.countByEmail(editCustomerDTO.getEmail());
+            if (count != 0) {
+                throw new CustomerException(CustomerErrorEnum.CUSTOMER_EMAIL_EXIST);
+            }
         }
         Customer customer = new Customer();
         BeanUtils.copyProperties(editCustomerDTO, customer);
