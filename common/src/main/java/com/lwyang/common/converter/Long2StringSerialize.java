@@ -1,4 +1,4 @@
-package converter;
+package com.lwyang.common.converter;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
