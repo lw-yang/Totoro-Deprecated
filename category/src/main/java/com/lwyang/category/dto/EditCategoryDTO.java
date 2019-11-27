@@ -2,8 +2,8 @@ package com.lwyang.category.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import converter.Long2StringSerialize;
-import converter.String2LongDeserialize;
+import com.lwyang.common.converter.Long2StringSerialize;
+import com.lwyang.common.converter.String2LongDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,11 +20,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 public class EditCategoryDTO {
-
-    @JsonDeserialize(using = String2LongDeserialize.class)
-    @JsonSerialize(using = Long2StringSerialize.class)
-    @NotNull(message = "请输入类别Id")
-    private Long id;
 
     private String name;
 
