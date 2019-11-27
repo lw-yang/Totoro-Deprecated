@@ -9,7 +9,6 @@ import com.lwyang.customer.dto.EditCustomerDTO;
 import com.lwyang.customer.dto.CustomerDTO;
 import com.lwyang.customer.dto.LoginDTO;
 import com.lwyang.customer.dto.RegisterDTO;
-import com.sun.beans.editors.LongEditor;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
