@@ -114,9 +114,20 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectRoot" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from category where parent_id = 0 order by priority
-  </select>
+    <select id="selectAllOrByParentId" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List"/>
+      from category
+      <if test="parentId != null">
+        where parent_id = #{parentId,jdbcType=BIGINT}
+      </if>
+      order by priority
+    </select>
+  <delete id="deleteByPrimaryKeyIn">
+    delete from category
+    where id in
+    <foreach collection="categoryIds" open="(" close=")" item="categoryId" separator=",">
+      #{categoryId}
+    </foreach>
+  </delete>
 </mapper>

@@ -1,6 +1,7 @@
 package com.lwyang.category.dao;
 
 import com.lwyang.category.entity.Category;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,5 +22,7 @@ public interface CategoryMapper {
 
     int updateByPrimaryKey(Category record);
 
-    List<Category> selectRoot();
+    List<Category> selectAllOrByParentId(@Param("parentId") Long parentId);
+
+    int deleteByPrimaryKeyIn(@Param("categoryIds") List<Long> categoryIds);
 }

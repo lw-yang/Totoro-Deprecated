@@ -12,11 +12,13 @@ import java.util.Optional;
  * @author lwyang  2019/11/25
  */
 public interface CategoryService {
-    List<CategoryDTO> getRootCategory();
+    List<CategoryDTO> getCategories(Long parentId);
 
     CategoryDTO getCategory(Long categoryId);
 
     Map<String, String> addCategory(CategoryDTO categoryDTO);
 
-    Optional editCategory(EditCategoryDTO editCategoryDTO);
+    Optional editCategory(EditCategoryDTO editCategoryDTO, Long categoryId);
+
+    Optional deleteCategories(List<Long> categoryIds);
 }

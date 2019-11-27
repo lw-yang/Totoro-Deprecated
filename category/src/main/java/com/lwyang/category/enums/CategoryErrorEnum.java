@@ -9,7 +9,7 @@ public enum CategoryErrorEnum {
     CATEGORY_INSERT_ERROR(2000, "类别添加失败"),
     CATEGORY_NOT_EXIST(2001, "没有这个类别"),
     CATEGORY_UPDATE_ERROR(2002,"类别更新失败"),
-
+    CATEGORY_DELETE_ERROR(2003, "类别删除失败"),
     ;
 
     private Integer code;

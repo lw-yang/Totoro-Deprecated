@@ -9,8 +9,10 @@ import com.lwyang.category.enums.CategoryErrorEnum;
 import com.lwyang.category.exception.CategoryException;
 import com.lwyang.category.service.CategoryService;
 import com.lwyang.common.util.IdUtil;
+import lombok.Builder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -30,8 +32,8 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryMapper categoryMapper;
 
     @Override
-    public List<CategoryDTO> getRootCategory(){
-        List<Category> categories = categoryMapper.selectRoot();
+    public List<CategoryDTO> getCategories(@Nullable Long parentId){
+        List<Category> categories = categoryMapper.selectAllOrByParentId(parentId);
         List<CategoryDTO> categoryDTOS = new ArrayList<>(categories.size());
         for (Category category : categories) {
             CategoryDTO categoryDTO = new CategoryDTO();
@@ -70,12 +72,21 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Optional editCategory(EditCategoryDTO editCategoryDTO){
+    public Optional editCategory(EditCategoryDTO editCategoryDTO, Long categoryId){
 
         Category category = new Category();
         BeanUtils.copyProperties(editCategoryDTO, category);
+        category.setId(categoryId);
         if (0 == categoryMapper.updateByPrimaryKeySelective(category)){
             throw new CategoryException(CategoryErrorEnum.CATEGORY_UPDATE_ERROR);
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional deleteCategories(List<Long> categoryIds){
+        if (0 == categoryMapper.deleteByPrimaryKeyIn(categoryIds)){
+            throw new CategoryException(CategoryErrorEnum.CATEGORY_DELETE_ERROR);
         }
         return Optional.empty();
     }

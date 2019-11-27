@@ -25,8 +25,8 @@ class CategoryServiceImplTest {
 
     @Test
     void getRootCategory() {
-        System.out.println(categoryService.getRootCategory());
-        Assertions.assertEquals(categoryService.getRootCategory().size(), 3);
+        System.out.println(categoryService.getCategories(null));
+        Assertions.assertEquals(categoryService.getCategories(null).size(), 3);
     }
 
     @Test
