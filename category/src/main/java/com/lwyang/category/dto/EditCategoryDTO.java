@@ -28,6 +28,10 @@ public class EditCategoryDTO {
 
     private String name;
 
+    private String src;
+
+    private Integer priority;
+
     @JsonDeserialize(using = String2LongDeserialize.class)
     @JsonSerialize(using = Long2StringSerialize.class)
     private Long parentId;

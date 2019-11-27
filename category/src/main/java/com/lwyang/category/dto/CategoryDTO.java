@@ -29,6 +29,10 @@ public class CategoryDTO {
     @NotEmpty(message = "请输入类别名称")
     private String name;
 
+    private String src;
+
+    private Integer priority;
+
     @JsonDeserialize(using = String2LongDeserialize.class)
     @JsonSerialize(using = Long2StringSerialize.class)
     private Long parentId;

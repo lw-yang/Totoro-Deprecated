@@ -37,7 +37,7 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="category" domainObjectName="category"
+        <table tableName="category" domainObjectName="Category"
                enableUpdateByExample="false" enableSelectByExample="false"
                enableDeleteByExample="false" enableCountByExample="false">
         </table>

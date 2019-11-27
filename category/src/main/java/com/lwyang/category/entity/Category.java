@@ -13,6 +13,10 @@ public class Category {
 
     private Long parentId;
 
+    private String src;
+
+    private Integer priority;
+
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;
@@ -41,6 +45,22 @@ public class Category {
         this.parentId = parentId;
     }
 
+    public String getSrc() {
+        return src;
+    }
+
+    public void setSrc(String src) {
+        this.src = src == null ? null : src.trim();
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+
     public LocalDateTime getCreateTime() {
         return createTime;
     }
@@ -66,6 +86,8 @@ public class Category {
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", parentId=").append(parentId);
+        sb.append(", src=").append(src);
+        sb.append(", priority=").append(priority);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");
