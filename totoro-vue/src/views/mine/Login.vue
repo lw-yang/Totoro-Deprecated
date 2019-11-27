@@ -52,7 +52,7 @@
         data(){
             return{
                 title: '用 户 登 录',
-                username: this.$store.getters.username,
+                username: '',
                 password: '',
             }
         },
@@ -65,9 +65,9 @@
                     let token = res.data.data.token
                     let userId = res.data.data.userId
                     this.$store.commit('set_username',this.username)
-                    this.$store.commit('set_userId', userId)
                     window.localStorage.setItem("token", token)
                     window.localStorage.setItem("username", this.username)
+                    window.localStorage.setItem("userId", userId)
                     this.$router.push('/mine')
                 }).catch((reason)=>{console.log(reason)})
             }
@@ -78,6 +78,13 @@
                     username: this.username,
                     password: this.password
                 }
+            }
+        },
+        created() {
+            if (this.$store.getters.username !== null && this.$store.getters.username !== ''){
+                this.username = this.$store.getters.username
+            }else if (window.localStorage.getItem("username") !== null){
+                this.username = window.localStorage.getItem("username")
             }
         }
     }

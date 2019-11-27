@@ -115,7 +115,7 @@
             },
             confirmLogout: function(){
                 window.localStorage.removeItem("token")
-                window.localStorage.removeItem("username")
+                window.localStorage.removeItem("userId")
                 this.$router.push('/mine')
             },
             ToEditCustomerInfo: function () {
@@ -123,7 +123,7 @@
             },
             edit: function () {
                 this.show = false
-                this.editData.id = this.$store.getters.userId
+                this.editData.id = window.localStorage.getItem("userId")
                 editCustomer(this.editData).then(res =>{
                     console.log("return: "+res.data.code)
                     Toast({
@@ -146,7 +146,7 @@
         computed:{
         },
         created() {
-            let userId = this.$store.getters.userId
+            let userId = window.localStorage.getItem("userId")
             if(userId === '' || userId === null){
                 return
             }
@@ -225,6 +225,7 @@
     #dialogText{
         text-align: center;
         font-size: 1.1rem;
+        padding-bottom: .5rem;
     }
     .flexDiv{
         display: flex;

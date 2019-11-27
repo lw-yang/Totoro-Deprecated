@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="user">
         <van-row v-if="isLogin"  class="info">
             <van-col class="avatar">
                 <van-image
@@ -15,20 +15,35 @@
                     <router-link to="/customerSetting">
                         {{username}}
                         <div id="sexIcon">
-                            <van-icon  v-if="sex === 1" class-prefix="iconfont" name="male" color="#1989fa" size="1.5rem"/>
-                            <van-icon  v-else class-prefix="iconfont" name="female" color="hotpink" size="1.5rem"/>
+                            <van-icon  v-if="sex === 1" class-prefix="iconfont" name="male" color="#1989fa" size="1.43rem"/>
+                            <van-icon  v-else class-prefix="iconfont" name="female" color="hotpink" size="1.43rem"/>
                         </div>
                     </router-link>
 
                 </div>
-                <div id="userPoints">
-                    积分值: {{points}}
+                <div id="point">
+                    <div id="level">
+                        <van-tag v-if="isVip" round type="danger">
+                            <div id="vipText">
+                                <p>VIP</p>
+                            </div>
+                        </van-tag>
+                        <van-tag v-else round color="#c8c9cc">
+                            <div id="notVipText">
+                                <p>VIP</p>
+                            </div>
+                        </van-tag>
+                    </div>
+                    <div id="userPoints">
+                        积分值: {{points}}
+                    </div>
                 </div>
+
             </van-col>
 
             <van-col id="editIcon" >
                 <router-link to="/customerSetting">
-                    <van-icon name="records" size="3rem" />
+                    <van-icon name="edit" size="2.3rem" />
                 </router-link>
             </van-col>
         </van-row>
@@ -52,6 +67,10 @@
 </template>
 
 <script>
+    import Vue from 'vue';
+    import { Tag } from 'vant';
+
+    Vue.use(Tag);
     export default {
         name: "UserInfo",
         props: {
@@ -59,24 +78,29 @@
             username: String,
             sex: Number,
             points: Number,
+            isVip: Boolean
+        },
+        computed:{
+
         }
     }
 </script>
 
 <style scoped>
+
     .info{
         height: 6rem;
         display: flex;
     }
     .avatar{
         display: flex;
-        background-color: #1989fa;
         flex: 1.2;
         justify-content: center;
         align-items: center;
     }
+
+
     .userInfo{
-        background-color: #ed6a0c;
         flex: 2;
         display: flex;
         flex-direction: column;
@@ -84,23 +108,44 @@
     }
     #editIcon{
         display: flex;
-        background-color: #ff976a;
         flex: .7;
-        justify-content: center;
+        justify-content: left;
         align-items: center;
     }
     #username{
         display: flex;
-        background-color: #b3d4fc;
         flex: 2;
         align-items: center;
-        font-size: 1.6rem;
+        font-size: 1.43rem;
+    }
+    #point{
+        flex: 1;
+        display: flex;
+    }
+    #level{
+        flex: 1;
+        display: flex;
+        align-items: flex-start;
+        justify-content: left;
+    }
+    #vipText{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: .9rem;
+        color: #fff;
+    }
+    #notVipText{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: .9rem;
+        color: #fff;
     }
     #userPoints{
         display: flex;
-        background-color: #ffd01e;
-        flex: 1;
-        align-items: center;
+        flex: 2;
+        align-items: flex-start;
         font-size: 1rem;
     }
     #sexIcon{
@@ -111,10 +156,14 @@
     #loginOrRegister{
         font-size: 1.4rem;
     }
+
+    #user{
+        padding-top: 2rem;
+        background: url('../../assets/img/userinfo.jpg') repeat 0 0;
+    }
+
     a:link {color:#000000;} /* 未访问的链接 */
     a:visited {color:#000000;} /* 已访问的链接 */
     a:hover {color:#000000;} /* 鼠标划过链接 */
     a:active {color:#000000;} /* 已选中的链接 */
-
-
 </style>

@@ -145,7 +145,7 @@
 <style scoped>
 
     #registerForm{
-        background-color: #fff7cc;
+        /*background-color: #fff7cc;*/
     }
 
     .key{
@@ -153,15 +153,17 @@
         justify-content: space-between;
         font-size: 1.3rem;
         flex: 1.2;
-        margin-left: 1.2rem;
+        margin-left: 1.5rem;
         margin-right: .5rem;
         padding: .3rem;
+        color: #333333;
     }
     .value{
         display: flex;
         flex: 3;
         font-size: 1.2rem;
-        margin-right: 1.2rem;
+        margin-right: 1.5rem;
+        align-items: center;
     }
     #ageValue{
         display: flex;
@@ -172,6 +174,7 @@
     #sexValue{
         display: flex;
         height: 1.8rem;
+        align-items: center;
     }
 
     .flexDiv:first-child{
@@ -180,6 +183,7 @@
     .flexDiv{
         display: flex;
         justify-content: center;
+        align-items: center;
         padding-top: 1rem;
     }
 

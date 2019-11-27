@@ -24,3 +24,37 @@ input.van-stepper__input{
     flex: 2;
     font-size: 1.1rem;
 }
+.van-sidebar{
+    width: 10rem;
+    height: 32rem;
+    overflow: auto;
+}
+.van-sidebar::-webkit-scrollbar{
+    display:none
+}
+.van-sidebar-item{
+    width: 5.8rem;
+    text-align: center;
+}
+.van-sidebar-item__text{
+    font-size: 1rem;
+    padding: 1rem .5rem 1rem .5rem;
+
+}
+.van-tag{
+    width: 2rem;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.demo-tag .van-tag + .van-tag{
+    font-size: 2rem;
+}
+
+div.van-grid-item{
+    margin-top: 1rem;
+}
+div.van-grid{
+
+}
