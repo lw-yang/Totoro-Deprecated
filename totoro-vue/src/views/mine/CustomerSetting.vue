@@ -123,8 +123,8 @@
             },
             edit: function () {
                 this.show = false
-                this.editData.id = window.localStorage.getItem("userId")
-                editCustomer(this.editData).then(res =>{
+                let id = window.localStorage.getItem("userId")
+                editCustomer(this.editData, id).then(res =>{
                     console.log("return: "+res.data.code)
                     Toast({
                         message: '修改成功',
